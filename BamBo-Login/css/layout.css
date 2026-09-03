@@ -1,0 +1,19 @@
+.login-zone {
+  position: relative;
+  width: min(100%, 430px);
+  justify-self: center;
+  padding-top: 96px;
+  animation: card-arrive .9s .08s var(--ease-out) both;
+}
+
+.site-credit {
+  position: fixed;
+  right: 18px;
+  bottom: 12px;
+  z-index: 12;
+  margin: 0;
+  color: #665b48;
+  font: 700 11px/1.4 "Mali", "Nunito", sans-serif;
+  letter-spacing: .02em;
+  opacity: .82;
+}

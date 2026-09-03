@@ -1,0 +1,167 @@
+/* Vintage storybook theme: warm paper, faded bamboo ink, printed-comic edges. */
+.login-card {
+  border: 2px solid #3a3429;
+  background: #f7edcf;
+  box-shadow: 0 18px 34px rgba(45, 42, 34, .18), 0 3px 0 rgba(45, 42, 34, .14);
+}
+
+.login-card::before {
+  opacity: .48;
+  background:
+    radial-gradient(ellipse at 12% 18%, rgba(139, 101, 51, .1), transparent 31%),
+    radial-gradient(ellipse at 82% 8%, rgba(186, 143, 72, .12), transparent 34%),
+    radial-gradient(ellipse at 68% 78%, rgba(96, 116, 72, .06), transparent 29%);
+  mix-blend-mode: multiply;
+}
+
+.brand,
+.panda-greeting,
+.lamp-zzz { font-family: "Mali", "Nunito", sans-serif; }
+
+.brand {
+  color: #456645;
+  font-weight: 700;
+  text-shadow: 1px 2px 0 rgba(154, 115, 60, .2);
+}
+
+.subtitle,
+.options,
+.new-account { color: #6d624f; }
+
+.field label { color: #3d382d; }
+
+.input-wrap input {
+  border: 1.5px solid #a78d60;
+  color: #2d2a22;
+  caret-color: #456645;
+  background: #efe0b8;
+  box-shadow: inset 0 2px 5px rgba(45, 42, 34, .08);
+}
+
+.input-wrap input::placeholder { color: #6d624f; }
+
+.input-wrap input:focus {
+  border-color: #456645;
+  background: #fff6da;
+  box-shadow: 0 5px 12px rgba(45, 42, 34, .12), 0 0 0 3px rgba(45, 42, 34, .16);
+}
+
+.input-wrap input[aria-invalid="true"] {
+  border-color: #9f4238;
+  box-shadow: 0 0 0 3px rgba(45, 42, 34, .16);
+}
+
+.input-icon,
+.password-toggle { color: #6b654f; }
+.password-toggle:hover { color: #2d2a22; background: rgba(95, 74, 43, .1); }
+
+.checkmark {
+  color: #fff7df;
+  background: #ead9ae;
+  box-shadow: inset 0 0 0 1.5px #8f7954;
+}
+
+.remember input:checked + .checkmark {
+  background: #4f704a;
+  box-shadow: inset 0 0 0 1px #3b593d;
+}
+
+a {
+  color: #3f6040;
+  text-decoration-color: rgba(63, 96, 64, .45);
+}
+
+a:hover { color: #263f2c; }
+:focus-visible { outline-color: rgba(159, 66, 56, .78); }
+
+.lamp-switch:focus-visible .cord-handle {
+  box-shadow: 0 7px 10px rgba(45, 42, 34, .2), 0 0 0 3px rgba(45, 42, 34, .48);
+}
+
+.sign-in {
+  color: #fff7df;
+  background: #4f704a;
+  box-shadow: 0 10px 20px rgba(45, 42, 34, .2), inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.sign-in:hover {
+  filter: brightness(.94);
+  box-shadow: 0 13px 23px rgba(45, 42, 34, .22);
+}
+
+.arrow-box { background: rgba(255, 247, 223, .17); }
+.spinner { border-color: rgba(255, 247, 223, .34); border-top-color: #fff7df; }
+.divider { color: #7b6d53; }
+.divider::before,
+.divider::after { background: #b8a277; }
+
+.social-button {
+  color: #39342a;
+  border: 1.5px solid #99815a;
+  background: #f3e5bf;
+  box-shadow: none;
+}
+
+.social-button:hover {
+  color: #263f2c;
+  background: #fff3d4;
+}
+
+.toast {
+  color: #fff7df;
+  border: 1px solid #2f4934;
+  background: #456645;
+  box-shadow: 0 16px 30px rgba(45, 42, 34, .24);
+}
+
+.form-lock {
+  color: #f8edcf;
+  border-color: #2d2a22;
+  background: #3b4935;
+  box-shadow: 0 16px 30px rgba(45, 42, 34, .24);
+}
+
+.form-lock span { color: #e8dbb9; }
+.form-lock svg { color: #e0b858; }
+
+.lamp-hint { color: #665b48; }
+.lamp-aura {
+  background: radial-gradient(ellipse at center, rgba(232, 177, 75, .42), rgba(210, 166, 75, .15) 46%, transparent 73%);
+}
+
+.shade {
+  background: linear-gradient(160deg, #f4d58e 4%, #dfb85f 45%, #c8923e 100%);
+  filter: drop-shadow(0 11px 9px rgba(45, 42, 34, .18));
+}
+
+.stem {
+  background: linear-gradient(90deg, #a7783e, #e1bd73 48%, #946532);
+  box-shadow: 0 8px 14px rgba(45, 42, 34, .16);
+}
+
+.base {
+  background: linear-gradient(to bottom, #e7c57f, #9f7138);
+  box-shadow: 0 10px 18px rgba(45, 42, 34, .2), inset 0 2px 0 rgba(255,255,255,.28);
+}
+
+.cord { color: #7b5a35; }
+.cord-handle { background: linear-gradient(#d5ad68, #8c6235); }
+.lamp-zzz { color: #9f4238; }
+
+.panda-head,
+.panda-body { background: #f5e9ca; }
+
+.panda-ear,
+.eye-patch,
+.paw { background: #2d2a22; }
+
+.panda-mouth { border-color: #554a3b; background: #6f4d40; }
+.leaf { background: linear-gradient(145deg, #789061, #456645); }
+.panda-greeting {
+  color: #3b4935;
+  border: 1.5px solid #493f31;
+  background: #fff1c9;
+  box-shadow: 0 9px 17px rgba(45, 42, 34, .18);
+}
+
+::selection { color: #fff7df; background: #4f704a; }
