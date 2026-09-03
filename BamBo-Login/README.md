@@ -1,47 +1,47 @@
 # BamBo Login
 
-Trang đăng nhập miễn phí mang phong cách truyện tranh giấy cổ, kết hợp một chú gấu trúc vui vẻ với chiếc đèn kéo dây có phản hồi vật lý.
+A free interactive login page with a vintage storybook aesthetic, a cheerful panda, and a pull-cord lamp with spring-like physical feedback.
 
-![Ảnh xem trước BamBo Login](docs/preview.webp)
+![BamBo Login preview](docs/preview.webp)
 
-## Điểm nổi bật
+## Highlights
 
-- Kéo dây đèn xuống rồi thả để bật hoặc tắt, có nhún và đàn hồi.
-- Khi tắt đèn, ánh sáng và biểu cảm thay đổi; toàn bộ form bị khóa cho tới khi bật lại.
-- Khi bật đèn, gấu trúc thức dậy, vẫy tay và chào `Hiii!`.
-- Gấu trúc che mắt khi nhập mật khẩu và hé nhìn khi người dùng chọn hiện mật khẩu.
-- Chặn nút hiện mật khẩu mặc định của Edge/Windows để không xuất hiện hai biểu tượng mắt.
-- Hỗ trợ bàn phím, giảm chuyển động theo tùy chọn hệ điều hành và bố cục responsive.
-- Không cần cài dependency hoặc build.
+- Pull the lamp cord down and release it to toggle the light, complete with stretch, recoil, and bounce.
+- Turning the lamp off changes the lighting and character expressions while locking the entire form until the light is restored.
+- Turning the lamp back on wakes the panda, who waves and says `Hiii!`.
+- The panda covers its eyes while a password is entered and peeks when password visibility is enabled.
+- Native Edge and Windows password reveal controls are suppressed to prevent a duplicate eye icon.
+- Keyboard interaction, reduced-motion preferences, and responsive layouts are supported.
+- No dependencies, package installation, or build step are required.
 
-## Chạy dự án
+## Run locally
 
-Mở trực tiếp `index.html` trong trình duyệt, hoặc chạy một web server tĩnh tại thư mục này:
+Open `index.html` directly in a browser, or start a static web server from this directory:
 
 ```bash
 python -m http.server 8080
 ```
 
-Sau đó mở `http://localhost:8080`.
+Then visit `http://localhost:8080`.
 
-## Cấu trúc
+## Structure
 
 ```text
 BamBo-Login/
-├── assets/icons/   # favicon và ghi công tài nguyên
-├── css/            # nền, đèn, bố cục, gấu, form, theme, responsive
-├── docs/           # ảnh giới thiệu
-├── js/             # lõi, toast, gấu, form, đèn và khởi tạo
+├── assets/icons/   # Favicon and third-party attribution
+├── css/            # Background, lamp, layout, panda, form, theme, responsive
+├── docs/           # Preview media
+├── js/             # Core, toast, panda, form, lamp, and initialization
 ├── index.html
 └── README.md
 ```
 
-## Ghi công
+## Credits
 
-Favicon panda được lấy từ dự án [Twemoji](https://github.com/jdecked/twemoji) và sử dụng theo [CC BY 4.0](https://github.com/jdecked/twemoji/blob/main/LICENSE-GRAPHICS). Chi tiết nằm trong [`assets/icons/ATTRIBUTION.md`](assets/icons/ATTRIBUTION.md).
+The panda favicon comes from the [Twemoji](https://github.com/jdecked/twemoji) project and is used under [CC BY 4.0](https://github.com/jdecked/twemoji/blob/main/LICENSE-GRAPHICS). See [`assets/icons/ATTRIBUTION.md`](assets/icons/ATTRIBUTION.md) for full details.
 
-## Giấy phép
+## License
 
-Mã nguồn: [MIT License](../LICENSE). Favicon Twemoji không thuộc MIT License của dự án và tiếp tục áp dụng CC BY 4.0.
+Source code is available under the [MIT License](../LICENSE). The Twemoji favicon is not covered by this project's MIT License and remains licensed under CC BY 4.0.
 
 © 2026 TDUmii - Free UI/UX.
