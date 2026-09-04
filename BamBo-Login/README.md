@@ -1,6 +1,6 @@
 # BamBo Login
 
-A free interactive login page with a vintage storybook aesthetic, a cheerful panda, and a pull-cord lamp with spring-like physical feedback.
+A free interactive login and admin dashboard experience with a vintage storybook aesthetic, a cheerful panda, and a pull-cord lamp with spring-like physical feedback.
 
 ![BamBo Login preview](docs/preview.webp)
 
@@ -12,6 +12,8 @@ A free interactive login page with a vintage storybook aesthetic, a cheerful pan
 - The panda covers its eyes while a password is entered and peeks when password visibility is enabled.
 - Native Edge and Windows password reveal controls are suppressed to prevent a duplicate eye icon.
 - Keyboard interaction, reduced-motion preferences, and responsive layouts are supported.
+- A responsive Bamboo Studio dashboard includes project search, status filters, review queues, metrics, notifications, and a demo project flow.
+- Demo authentication is intentionally local-only: use username `admin` and password `123456`.
 - No dependencies, package installation, or build step are required.
 
 ## Run locally
@@ -24,14 +26,17 @@ python -m http.server 8080
 
 Then visit `http://localhost:8080`.
 
+Sign in with `admin / 123456` to open `dashboard.html`. Dashboard values and actions are illustrative and are clearly labelled as demo data.
+
 ## Structure
 
 ```text
 BamBo-Login/
 ├── assets/icons/   # Favicon and third-party attribution
-├── css/            # Background, lamp, layout, panda, form, theme, responsive
+├── css/            # Login styles plus the standalone dashboard stylesheet
 ├── docs/           # Preview media
-├── js/             # Core, toast, panda, form, lamp, and initialization
+├── js/             # Login controllers and dashboard interactions
+├── dashboard.html
 ├── index.html
 └── README.md
 ```

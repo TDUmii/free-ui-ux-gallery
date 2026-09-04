@@ -1,5 +1,6 @@
 window.BambooApp.createFormController = function createFormController(showToast) {
   const { loginForm, username, password, signInButton } = window.BambooApp.elements;
+  const credentialsError = document.querySelector("#credentialsError");
 
   function setEnabled(enabled) {
     loginForm.setAttribute("aria-disabled", String(!enabled));
@@ -22,6 +23,7 @@ window.BambooApp.createFormController = function createFormController(showToast)
   [username, password].forEach(input => input.addEventListener("input", () => {
     input.removeAttribute("aria-invalid");
     document.querySelector(`#${input.id}Error`).classList.remove("show");
+    credentialsError.classList.remove("show");
   }));
 
   username.addEventListener("blur", () => {
@@ -46,9 +48,21 @@ window.BambooApp.createFormController = function createFormController(showToast)
     signInButton.disabled = true;
     signInButton.classList.add("is-loading");
     setTimeout(() => {
-      signInButton.disabled = document.body.classList.contains("lamp-off");
-      signInButton.classList.remove("is-loading");
-      showToast(`Chào mừng ${username.value.trim()} trở lại với Bamboo!`);
+      const isDemoAdmin = username.value.trim().toLowerCase() === "admin" && password.value === "123456";
+      if (!isDemoAdmin) {
+        signInButton.disabled = document.body.classList.contains("lamp-off");
+        signInButton.classList.remove("is-loading");
+        username.setAttribute("aria-invalid", "true");
+        password.setAttribute("aria-invalid", "true");
+        credentialsError.classList.add("show");
+        password.focus();
+        showToast("Thông tin đăng nhập chưa đúng. Hãy thử admin / 123456 nhé.");
+        return;
+      }
+
+      sessionStorage.setItem("bamboo-demo-auth", "admin");
+      showToast("Đăng nhập thành công. Đang mở Bamboo Studio...");
+      window.setTimeout(() => window.location.assign("dashboard.html"), 340);
     }, 850);
   });
 

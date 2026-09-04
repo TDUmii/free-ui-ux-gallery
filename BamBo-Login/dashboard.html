@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bamboo Studio - dashboard quản trị UI/UX tương tác.">
+  <meta name="author" content="TDUmii">
+  <meta name="theme-color" content="#f3ead0">
+  <title>Bamboo Studio - Tổng quan</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/panda.svg">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <a class="skip-link" href="#dashboardMain">Bỏ qua điều hướng</a>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"></rect><rect x="14" y="3" width="7" height="7" rx="2"></rect><rect x="3" y="14" width="7" height="7" rx="2"></rect><rect x="14" y="14" width="7" height="7" rx="2"></rect></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5h7l2-2h9v13H3z"></path></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"></path></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.5-4 2.3-6 5.5-6s5 2 5.5 6M15 5.5a3 3 0 0 1 0 5.8M15.5 14c2.8.2 4.4 1.9 5 5"></path></symbol>
+    <symbol id="i-library" viewBox="0 0 24 24"><path d="M4 4h5v16H4zM10.5 4h4v16h-4zM16 5l3.8-1 3.2 15-3.8 1z"></path></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19 13.5v-3l-2-.7-.8-1.9.9-1.9L15 4l-1.8.9-2-.8L10.5 2h-3L6.8 4.1l-2 .8L3 4 1 6l.9 1.9-.8 2L-1 10.5v3l2.1.7.8 2L1 18l2 2 1.8-.9 2 .8.7 2.1h3l.7-2.1 2-.8 1.8.9 2.1-2-.9-1.8.8-2z" transform="translate(2.5 0) scale(.78)"></path></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M5 17h14l-1.5-2V10a5.5 5.5 0 0 0-11 0v5zM10 20h4"></path></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"></path></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 4H4v16h6M14 8l4 4-4 4M8 12h10"></path></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.5 4.7L18 9l-4.5 1.3L12 15l-1.5-4.7L6 9l4.5-1.3zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle></symbol>
+  </svg>
+
+  <div class="dashboard-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Điều hướng chính">
+      <div class="sidebar-head">
+        <a class="brand-lockup" href="dashboard.html" aria-label="Bamboo Studio - Trang tổng quan">
+          <span class="brand-mark"><img src="assets/icons/panda.svg" alt="" width="34" height="34"></span>
+          <span><strong>Bamboo</strong><small>creative studio</small></span>
+        </a>
+        <button class="icon-button sidebar-close" id="sidebarClose" type="button" aria-label="Đóng menu"><svg><use href="#i-close"></use></svg></button>
+      </div>
+
+      <nav class="main-nav" aria-label="Khu vực làm việc">
+        <p class="nav-label">Không gian làm việc</p>
+        <button class="nav-item is-active" type="button" data-view="Tổng quan"><svg><use href="#i-grid"></use></svg><span>Tổng quan</span></button>
+        <button class="nav-item" type="button" data-view="Dự án"><svg><use href="#i-folder"></use></svg><span>Dự án</span><span class="nav-count">8</span></button>
+        <button class="nav-item" type="button" data-view="Hàng chờ duyệt"><svg><use href="#i-check"></use></svg><span>Hàng chờ duyệt</span><span class="nav-count alert">5</span></button>
+        <button class="nav-item" type="button" data-view="Thành viên"><svg><use href="#i-users"></use></svg><span>Thành viên</span></button>
+        <button class="nav-item" type="button" data-view="Thư viện UI"><svg><use href="#i-library"></use></svg><span>Thư viện UI</span></button>
+        <p class="nav-label nav-label-secondary">Hệ thống</p>
+        <button class="nav-item" type="button" data-view="Cài đặt"><svg><use href="#i-settings"></use></svg><span>Cài đặt</span></button>
+      </nav>
+
+      <div class="sidebar-note">
+        <div class="mini-panda" aria-hidden="true"><span class="mini-ear left"></span><span class="mini-ear right"></span><span class="mini-face"><i></i><i></i><b></b></span></div>
+        <strong>Nhịp làm việc ổn định</strong>
+        <p>Team đã hoàn thành 82% mục tiêu tuần.</p>
+        <button type="button" data-action="weekly">Xem báo cáo <svg><use href="#i-arrow"></use></svg></button>
+      </div>
+
+      <div class="account-row">
+        <span class="avatar">AD</span>
+        <span><strong>Admin</strong><small>Quản trị viên</small></span>
+        <button class="icon-button" id="logoutButton" type="button" aria-label="Đăng xuất"><svg><use href="#i-logout"></use></svg></button>
+      </div>
+    </aside>
+
+    <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+    <main class="workspace" id="dashboardMain" tabindex="-1">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="sidebar"><svg><use href="#i-menu"></use></svg></button>
+        <label class="search-box" for="globalSearch">
+          <svg aria-hidden="true"><use href="#i-search"></use></svg>
+          <input id="globalSearch" type="search" placeholder="Tìm dự án, thành viên..." autocomplete="off">
+          <kbd>Ctrl K</kbd>
+        </label>
+        <div class="top-actions">
+          <span class="demo-chip">Dữ liệu mẫu</span>
+          <button class="icon-button notification-button" id="notificationButton" type="button" aria-label="Thông báo, có 3 thông báo mới" aria-expanded="false">
+            <svg><use href="#i-bell"></use></svg><span></span>
+          </button>
+          <button class="primary-button" type="button" data-action="new-project"><svg><use href="#i-plus"></use></svg>Tạo dự án</button>
+        </div>
+        <div class="notification-panel" id="notificationPanel" hidden>
+          <div><strong>Thông báo</strong><button type="button" data-action="read-all">Đánh dấu đã đọc</button></div>
+          <p><span class="notice-dot"></span><b>Lan Anh</b> vừa gửi “Pet Care Mobile” để duyệt.</p>
+          <p><span class="notice-dot"></span>Bộ UI Kit mới đã được xuất bản.</p>
+          <p><span class="notice-dot"></span>Weekly Sprint đạt 82% tiến độ.</p>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <section class="welcome-row" aria-labelledby="pageTitle">
+          <div>
+            <h1 id="pageTitle">Chào buổi sáng, Admin.</h1>
+            <p>Đây là nhịp làm việc của Bamboo Studio hôm nay.</p>
+          </div>
+          <div class="date-filter" role="group" aria-label="Khoảng thời gian">
+            <button type="button" data-range="7">7 ngày</button>
+            <button class="is-selected" type="button" data-range="30">30 ngày</button>
+            <button type="button" data-range="90">90 ngày</button>
+          </div>
+        </section>
+
+        <section class="metric-strip" aria-label="Chỉ số tổng quan">
+          <article class="metric-block">
+            <div class="metric-head"><span>Dự án đang chạy</span><span class="trend up">+2 tháng này</span></div>
+            <strong data-metric="projects">8</strong>
+            <p>3 dự án cần phản hồi hôm nay</p>
+          </article>
+          <article class="metric-block">
+            <div class="metric-head"><span>Chờ phê duyệt</span><span class="trend warm">Cần chú ý</span></div>
+            <strong data-metric="reviews">5</strong>
+            <p>2 mục đã quá 24 giờ</p>
+          </article>
+          <article class="metric-block">
+            <div class="metric-head"><span>Đã hoàn thành</span><span class="trend up">+18%</span></div>
+            <strong data-metric="completed">24</strong>
+            <p>So với 30 ngày trước</p>
+          </article>
+          <article class="metric-block metric-focus">
+            <div class="metric-head"><span>Điểm chất lượng</span><svg aria-hidden="true"><use href="#i-spark"></use></svg></div>
+            <strong data-metric="quality">92<span>/100</span></strong>
+            <p>Khả dụng, nhất quán và dễ tiếp cận</p>
+          </article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="progress-panel" aria-labelledby="progressTitle">
+            <div class="section-heading">
+              <div><h2 id="progressTitle">Tiến độ thiết kế</h2><p>Số màn hình hoàn thành theo tuần</p></div>
+              <span class="legend"><i></i>Màn hình đã duyệt</span>
+            </div>
+            <div class="chart-wrap">
+              <svg class="progress-chart" viewBox="0 0 760 250" role="img" aria-labelledby="chartTitle chartDesc" preserveAspectRatio="none">
+                <title id="chartTitle">Biểu đồ tiến độ thiết kế trong 6 tuần</title>
+                <desc id="chartDesc">Tiến độ tăng từ 12 màn hình tuần 1 lên 31 màn hình tuần 6.</desc>
+                <g class="grid-lines"><path d="M48 28H738M48 86H738M48 144H738M48 202H738"></path></g>
+                <path class="area" d="M48 180 C105 176 130 154 186 159 S285 113 324 126 S414 94 462 101 S550 48 600 68 S686 38 738 45 L738 202 L48 202Z"></path>
+                <path class="line" d="M48 180 C105 176 130 154 186 159 S285 113 324 126 S414 94 462 101 S550 48 600 68 S686 38 738 45"></path>
+                <g class="chart-points">
+                  <circle cx="48" cy="180" r="5" data-value="12"></circle><circle cx="186" cy="159" r="5" data-value="15"></circle><circle cx="324" cy="126" r="5" data-value="20"></circle><circle cx="462" cy="101" r="5" data-value="24"></circle><circle cx="600" cy="68" r="5" data-value="28"></circle><circle cx="738" cy="45" r="5" data-value="31"></circle>
+                </g>
+              </svg>
+              <div class="chart-axis" aria-hidden="true"><span>Tuần 1</span><span>Tuần 2</span><span>Tuần 3</span><span>Tuần 4</span><span>Tuần 5</span><span>Tuần 6</span></div>
+              <output class="chart-tooltip" id="chartTooltip" hidden></output>
+            </div>
+          </section>
+
+          <aside class="focus-panel" aria-labelledby="focusTitle">
+            <div class="section-heading"><div><h2 id="focusTitle">Cần bạn duyệt</h2><p>Ưu tiên trong hôm nay</p></div><span class="queue-count">5</span></div>
+            <div class="review-list">
+              <button type="button" class="review-item" data-review="Pet Care Mobile">
+                <span class="review-thumb coral">PC</span><span><strong>Pet Care Mobile</strong><small>Luồng đặt lịch · 8 màn hình</small></span><svg><use href="#i-arrow"></use></svg>
+              </button>
+              <button type="button" class="review-item" data-review="Finly Dashboard">
+                <span class="review-thumb green">FD</span><span><strong>Finly Dashboard</strong><small>Biểu đồ doanh thu · 4 màn hình</small></span><svg><use href="#i-arrow"></use></svg>
+              </button>
+              <button type="button" class="review-item" data-review="Travel Buddy">
+                <span class="review-thumb gold">TB</span><span><strong>Travel Buddy</strong><small>Prototype vòng 2 · 12 màn hình</small></span><svg><use href="#i-arrow"></use></svg>
+              </button>
+            </div>
+            <button class="text-button" type="button" data-action="all-reviews">Xem toàn bộ hàng chờ <svg><use href="#i-arrow"></use></svg></button>
+          </aside>
+        </div>
+
+        <section class="projects-section" aria-labelledby="projectTitle">
+          <div class="section-heading project-heading">
+            <div><h2 id="projectTitle">Dự án gần đây</h2><p>Những nơi team đang dành nhiều thời gian nhất</p></div>
+            <div class="project-controls">
+              <label><span class="sr-only">Lọc trạng thái dự án</span><select id="statusFilter"><option value="all">Tất cả trạng thái</option><option value="review">Đang duyệt</option><option value="progress">Đang thiết kế</option><option value="done">Hoàn thành</option></select></label>
+              <button class="secondary-button" type="button" data-action="all-projects">Xem tất cả</button>
+            </div>
+          </div>
+          <div class="project-table-wrap">
+            <table class="project-table">
+              <caption class="sr-only">Danh sách dự án gần đây của Bamboo Studio</caption>
+              <thead><tr><th scope="col">Dự án</th><th scope="col">Nhóm</th><th scope="col">Tiến độ</th><th scope="col">Trạng thái</th><th scope="col">Cập nhật</th><th scope="col"><span class="sr-only">Tác vụ</span></th></tr></thead>
+              <tbody id="projectRows">
+                <tr data-status="review" data-search="pet care mobile minh lan anh"><td><span class="project-icon coral"><svg><use href="#i-folder"></use></svg></span><span><strong>Pet Care Mobile</strong><small>Ứng dụng di động</small></span></td><td><span class="avatar-stack"><i>MA</i><i>LA</i><b>+2</b></span></td><td><span class="progress-value"><i style="--value: 78%"></i></span><b class="percent">78%</b></td><td><span class="status review">Đang duyệt</span></td><td>12 phút trước</td><td><button class="icon-button row-menu" type="button" aria-label="Tác vụ cho Pet Care Mobile"><svg><use href="#i-more"></use></svg></button></td></tr>
+                <tr data-status="progress" data-search="finly dashboard quy thao"><td><span class="project-icon green"><svg><use href="#i-grid"></use></svg></span><span><strong>Finly Dashboard</strong><small>Web dashboard</small></span></td><td><span class="avatar-stack"><i>QT</i><i>HN</i></span></td><td><span class="progress-value"><i style="--value: 54%"></i></span><b class="percent">54%</b></td><td><span class="status progress">Đang thiết kế</span></td><td>1 giờ trước</td><td><button class="icon-button row-menu" type="button" aria-label="Tác vụ cho Finly Dashboard"><svg><use href="#i-more"></use></svg></button></td></tr>
+                <tr data-status="done" data-search="mori coffee website yen binh"><td><span class="project-icon gold"><svg><use href="#i-library"></use></svg></span><span><strong>Mori Coffee</strong><small>Website thương hiệu</small></span></td><td><span class="avatar-stack"><i>YB</i><i>DL</i><b>+1</b></span></td><td><span class="progress-value"><i style="--value: 100%"></i></span><b class="percent">100%</b></td><td><span class="status done">Hoàn thành</span></td><td>Hôm qua</td><td><button class="icon-button row-menu" type="button" aria-label="Tác vụ cho Mori Coffee"><svg><use href="#i-more"></use></svg></button></td></tr>
+                <tr data-status="progress" data-search="travel buddy linh an"><td><span class="project-icon blue"><svg><use href="#i-folder"></use></svg></span><span><strong>Travel Buddy</strong><small>Thiết kế sản phẩm</small></span></td><td><span class="avatar-stack"><i>LN</i><i>AT</i></span></td><td><span class="progress-value"><i style="--value: 63%"></i></span><b class="percent">63%</b></td><td><span class="status progress">Đang thiết kế</span></td><td>Hôm qua</td><td><button class="icon-button row-menu" type="button" aria-label="Tác vụ cho Travel Buddy"><svg><use href="#i-more"></use></svg></button></td></tr>
+              </tbody>
+            </table>
+            <p class="empty-projects" id="emptyProjects" hidden>Không tìm thấy dự án phù hợp. Thử từ khóa hoặc trạng thái khác nhé.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="dialog-backdrop" id="dialogBackdrop" hidden>
+    <section class="quick-dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+      <button class="icon-button dialog-close" id="dialogClose" type="button" aria-label="Đóng hộp thoại"><svg><use href="#i-close"></use></svg></button>
+      <span class="dialog-mark"><svg><use href="#i-spark"></use></svg></span>
+      <h2 id="dialogTitle">Tạo dự án mới</h2>
+      <p>Đặt một cái tên ngắn gọn để team bắt đầu không gian thiết kế.</p>
+      <label for="projectName">Tên dự án</label>
+      <input id="projectName" type="text" placeholder="Ví dụ: Bamboo Mobile App" maxlength="60">
+      <div class="dialog-actions"><button class="secondary-button" id="dialogCancel" type="button">Hủy</button><button class="primary-button" id="dialogCreate" type="button">Tạo dự án</button></div>
+    </section>
+  </div>
+
+  <div class="toast" id="dashboardToast" role="status" aria-live="polite"></div>
+  <script src="js/dashboard.js" defer></script>
+</body>
+</html>

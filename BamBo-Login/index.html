@@ -81,12 +81,13 @@
         <div class="field">
           <label for="password">Mật khẩu</label>
           <div class="input-wrap">
-            <input id="password" name="password" type="password" required minlength="6" maxlength="128" placeholder="Ít nhất 6 ký tự" autocomplete="current-password" aria-describedby="passwordError">
+            <input id="password" name="password" type="password" required minlength="6" maxlength="128" placeholder="Ít nhất 6 ký tự" autocomplete="current-password" aria-describedby="passwordError credentialsError">
             <button class="password-toggle" id="passwordToggle" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">
               <svg class="icon eye-open" viewBox="0 0 24 24"><path d="M2.8 12s3.3-5 9.2-5 9.2 5 9.2 5-3.3 5-9.2 5-9.2-5-9.2-5Z"></path><circle cx="12" cy="12" r="2.3"></circle></svg>
             </button>
           </div>
           <p class="error-message" id="passwordError" role="alert">Mật khẩu cần có ít nhất 6 ký tự.</p>
+          <p class="error-message" id="credentialsError" role="alert">Tài khoản hoặc mật khẩu chưa đúng. Dùng admin / 123456 để xem bản demo.</p>
         </div>
 
         <div class="options">
