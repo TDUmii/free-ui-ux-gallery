@@ -2,7 +2,15 @@
 
 A free interactive login and admin dashboard experience with a vintage storybook aesthetic, a cheerful panda, and a pull-cord lamp with spring-like physical feedback.
 
+## Preview
+
+### Interactive login
+
 ![BamBo Login preview](docs/preview.webp)
+
+### Bamboo Studio dashboard
+
+![Bamboo Studio dashboard preview](docs/dashboard-preview.webp)
 
 ## Highlights
 
