@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#f3ead0">
   <title>Bamboo Studio - Tổng quan</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/panda.svg">
-  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/dashboard.css?v=3">
 </head>
 <body>
   <a class="skip-link" href="#dashboardMain">Bỏ qua điều hướng</a>
@@ -28,6 +28,13 @@
     <symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 4H4v16h6M14 8l4 4-4 4M8 12h10"></path></symbol>
     <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.5 4.7L18 9l-4.5 1.3L12 15l-1.5-4.7L6 9l4.5-1.3zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></symbol>
     <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16zM13.5 6.5l4 4"></path></symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24"><path d="M4 7h16v13H4zM3 3h18v4H3zM9 11h6"></path></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"></path></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.8a5.2 5.2 0 0 0-7.4 0L12 7.2l-1.4-1.4a5.2 5.2 0 1 0-7.4 7.4L12 22l8.8-8.8a5.2 5.2 0 0 0 0-7.4Z"></path></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V4H4v12h4"></path></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.8 12s3.3-5 9.2-5 9.2 5 9.2 5-3.3 5-9.2 5-9.2-5-9.2-5Z"></path><circle cx="12" cy="12" r="2.3"></circle></symbol>
   </svg>
 
   <div class="dashboard-shell">
@@ -42,13 +49,13 @@
 
       <nav class="main-nav" aria-label="Khu vực làm việc">
         <p class="nav-label">Không gian làm việc</p>
-        <button class="nav-item is-active" type="button" data-view="Tổng quan"><svg><use href="#i-grid"></use></svg><span>Tổng quan</span></button>
-        <button class="nav-item" type="button" data-view="Dự án"><svg><use href="#i-folder"></use></svg><span>Dự án</span><span class="nav-count">8</span></button>
-        <button class="nav-item" type="button" data-view="Hàng chờ duyệt"><svg><use href="#i-check"></use></svg><span>Hàng chờ duyệt</span><span class="nav-count alert">5</span></button>
-        <button class="nav-item" type="button" data-view="Thành viên"><svg><use href="#i-users"></use></svg><span>Thành viên</span></button>
-        <button class="nav-item" type="button" data-view="Thư viện UI"><svg><use href="#i-library"></use></svg><span>Thư viện UI</span></button>
+        <button class="nav-item is-active" type="button" data-view="overview"><svg><use href="#i-grid"></use></svg><span>Tổng quan</span></button>
+        <button class="nav-item" type="button" data-view="projects"><svg><use href="#i-folder"></use></svg><span>Dự án</span><span class="nav-count" id="projectNavCount">8</span></button>
+        <button class="nav-item" type="button" data-view="reviews"><svg><use href="#i-check"></use></svg><span>Hàng chờ duyệt</span><span class="nav-count alert" id="reviewNavCount">5</span></button>
+        <button class="nav-item" type="button" data-view="members"><svg><use href="#i-users"></use></svg><span>Thành viên</span></button>
+        <button class="nav-item" type="button" data-view="library"><svg><use href="#i-library"></use></svg><span>Thư viện UI</span></button>
         <p class="nav-label nav-label-secondary">Hệ thống</p>
-        <button class="nav-item" type="button" data-view="Cài đặt"><svg><use href="#i-settings"></use></svg><span>Cài đặt</span></button>
+        <button class="nav-item" type="button" data-view="settings"><svg><use href="#i-settings"></use></svg><span>Cài đặt</span></button>
       </nav>
 
       <div class="sidebar-note">
@@ -91,6 +98,7 @@
       </header>
 
       <div class="dashboard-content">
+        <section class="view-panel is-active" id="view-overview" data-view-panel="overview">
         <section class="welcome-row" aria-labelledby="pageTitle">
           <div>
             <h1 id="pageTitle">Chào buổi sáng, Admin.</h1>
@@ -187,6 +195,62 @@
             <p class="empty-projects" id="emptyProjects" hidden>Không tìm thấy dự án phù hợp. Thử từ khóa hoặc trạng thái khác nhé.</p>
           </div>
         </section>
+        </section>
+
+        <section class="view-panel" id="view-projects" data-view-panel="projects" hidden>
+          <div class="view-page-head">
+            <div><h1>Dự án</h1><p>Quản lý toàn bộ sản phẩm mà team đang thiết kế.</p></div>
+            <button class="primary-button" type="button" data-action="new-project"><svg><use href="#i-plus"></use></svg>Tạo dự án</button>
+          </div>
+          <div class="view-toolbar">
+            <div class="segmented-filter" id="projectViewFilters" role="group" aria-label="Lọc dự án">
+              <button class="is-selected" type="button" data-project-filter="all">Tất cả</button>
+              <button type="button" data-project-filter="progress">Đang thiết kế</button>
+              <button type="button" data-project-filter="review">Đang duyệt</button>
+              <button type="button" data-project-filter="done">Hoàn thành</button>
+            </div>
+            <span class="result-count" id="projectResultCount"></span>
+          </div>
+          <div class="project-catalog" id="projectCatalog"></div>
+          <div class="friendly-empty" id="projectCatalogEmpty" hidden><img class="empty-panda" src="assets/icons/panda.svg" alt="" width="54" height="54"><h2>Chưa tìm thấy dự án</h2><p>Đổi bộ lọc hoặc tạo một dự án mới để bắt đầu.</p><button class="secondary-button" type="button" data-action="new-project">Tạo dự án đầu tiên</button></div>
+        </section>
+
+        <section class="view-panel" id="view-reviews" data-view-panel="reviews" hidden>
+          <div class="view-page-head"><div><h1>Hàng chờ duyệt</h1><p>Ra quyết định rõ ràng để team tiếp tục mà không bị nghẽn.</p></div><span class="page-stat"><b id="pendingReviewCount">0</b> đang chờ</span></div>
+          <div class="review-board" id="reviewBoard"></div>
+          <div class="friendly-empty" id="reviewBoardEmpty" hidden><span class="success-seal"><svg><use href="#i-check"></use></svg></span><h2>Hàng chờ đã sạch</h2><p>Mọi thiết kế hiện đã có quyết định. Panda có thể nghỉ một chút rồi.</p></div>
+          <section class="activity-log" aria-labelledby="activityTitle"><div class="section-heading"><div><h2 id="activityTitle">Hoạt động gần đây</h2><p>Lịch sử quyết định và thay đổi trong workspace.</p></div></div><div id="activityLog"></div></section>
+        </section>
+
+        <section class="view-panel" id="view-members" data-view-panel="members" hidden>
+          <div class="view-page-head"><div><h1>Thành viên</h1><p>Phân công vai trò và theo dõi sức tải của đội ngũ.</p></div><button class="primary-button" type="button" data-action="new-member"><svg><use href="#i-plus"></use></svg>Thêm thành viên</button></div>
+          <div class="team-summary" id="teamSummary"></div>
+          <div class="member-grid" id="memberGrid"></div>
+        </section>
+
+        <section class="view-panel" id="view-library" data-view-panel="library" hidden>
+          <div class="view-page-head"><div><h1>Thư viện UI</h1><p>Các pattern và token dùng chung cho mọi dự án Bamboo.</p></div><span class="page-stat"><b id="favoriteCount">0</b> đã lưu</span></div>
+          <div class="view-toolbar">
+            <div class="segmented-filter" id="libraryFilters" role="group" aria-label="Lọc thư viện UI">
+              <button class="is-selected" type="button" data-library-filter="all">Tất cả</button>
+              <button type="button" data-library-filter="Form">Form</button>
+              <button type="button" data-library-filter="Navigation">Điều hướng</button>
+              <button type="button" data-library-filter="Feedback">Phản hồi</button>
+              <button type="button" data-library-filter="Data">Dữ liệu</button>
+            </div>
+          </div>
+          <div class="library-grid" id="libraryGrid"></div>
+          <div class="friendly-empty" id="libraryEmpty" hidden><h2>Không có component phù hợp</h2><p>Thử một nhóm khác hoặc xóa từ khóa tìm kiếm.</p></div>
+        </section>
+
+        <section class="view-panel" id="view-settings" data-view-panel="settings" hidden>
+          <div class="view-page-head"><div><h1>Cài đặt</h1><p>Tùy chỉnh không gian demo trên thiết bị này.</p></div><span class="saved-indicator" id="savedIndicator"><svg><use href="#i-check"></use></svg>Đã lưu cục bộ</span></div>
+          <form class="settings-layout" id="settingsForm">
+            <section class="settings-group" aria-labelledby="appearanceTitle"><div><h2 id="appearanceTitle">Giao diện</h2><p>Điều chỉnh mật độ hiển thị cho cách bạn làm việc.</p></div><label class="setting-field"><span><strong>Mật độ nội dung</strong><small>Thoáng hoặc gọn hơn trên màn hình lớn.</small></span><select name="density"><option value="comfortable">Thoải mái</option><option value="compact">Gọn</option></select></label></section>
+            <section class="settings-group" aria-labelledby="notifyTitle"><div><h2 id="notifyTitle">Thông báo</h2><p>Chọn những cập nhật cần được chú ý trong bản demo.</p></div><label class="switch-row"><span><strong>Thiết kế chờ duyệt</strong><small>Hiện thông báo khi có bản thiết kế mới.</small></span><input type="checkbox" name="reviewNotifications"><i aria-hidden="true"></i></label><label class="switch-row"><span><strong>Báo cáo tuần</strong><small>Nhắc khi báo cáo tiến độ đã sẵn sàng.</small></span><input type="checkbox" name="weeklyReport"><i aria-hidden="true"></i></label><label class="switch-row"><span><strong>Âm thanh phản hồi</strong><small>Phát âm báo cho thao tác quan trọng.</small></span><input type="checkbox" name="soundFeedback"><i aria-hidden="true"></i></label></section>
+            <section class="settings-group danger-zone" aria-labelledby="dataTitle"><div><h2 id="dataTitle">Dữ liệu demo</h2><p>Khôi phục toàn bộ dự án, lượt duyệt và cài đặt về trạng thái ban đầu.</p></div><button class="danger-button" id="resetDemoButton" type="button"><svg><use href="#i-archive"></use></svg>Khôi phục dữ liệu mẫu</button></section>
+          </form>
+        </section>
       </div>
     </main>
   </div>
@@ -198,12 +262,46 @@
       <h2 id="dialogTitle">Tạo dự án mới</h2>
       <p>Đặt một cái tên ngắn gọn để team bắt đầu không gian thiết kế.</p>
       <label for="projectName">Tên dự án</label>
-      <input id="projectName" type="text" placeholder="Ví dụ: Bamboo Mobile App" maxlength="60">
+      <input id="projectName" type="text" placeholder="Ví dụ: Bamboo Mobile App" maxlength="60" aria-describedby="projectDialogError">
+      <div class="dialog-field-row">
+        <label>Loại sản phẩm<select id="projectType"><option>Ứng dụng di động</option><option>Web dashboard</option><option>Website thương hiệu</option><option>Design system</option></select></label>
+        <label>Phụ trách<select id="projectOwner"></select></label>
+      </div>
+      <p class="dialog-error" id="projectDialogError" role="alert"></p>
       <div class="dialog-actions"><button class="secondary-button" id="dialogCancel" type="button">Hủy</button><button class="primary-button" id="dialogCreate" type="button">Tạo dự án</button></div>
     </section>
   </div>
 
+  <div class="dialog-backdrop" id="memberDialogBackdrop" hidden>
+    <section class="quick-dialog" role="dialog" aria-modal="true" aria-labelledby="memberDialogTitle">
+      <button class="icon-button dialog-close" id="memberDialogClose" type="button" aria-label="Đóng hộp thoại"><svg><use href="#i-close"></use></svg></button>
+      <span class="dialog-mark"><svg><use href="#i-users"></use></svg></span>
+      <h2 id="memberDialogTitle">Thêm thành viên</h2>
+      <p>Thành viên sẽ được thêm vào không gian demo trên thiết bị này.</p>
+      <label for="memberName">Họ và tên</label><input id="memberName" type="text" placeholder="Ví dụ: Minh Anh" maxlength="50" aria-describedby="memberDialogError">
+      <label for="memberEmail">Email</label><input id="memberEmail" type="email" placeholder="minhanh@example.com" maxlength="100" aria-describedby="memberDialogError">
+      <label for="memberRole">Vai trò</label><select id="memberRole"><option>Product Designer</option><option>UX Researcher</option><option>UI Designer</option><option>Design Lead</option></select>
+      <p class="dialog-error" id="memberDialogError" role="alert"></p>
+      <div class="dialog-actions"><button class="secondary-button" id="memberDialogCancel" type="button">Hủy</button><button class="primary-button" id="memberDialogCreate" type="button">Thêm vào team</button></div>
+    </section>
+  </div>
+
+  <aside class="detail-drawer" id="projectDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true" inert>
+    <div class="drawer-head"><div><span>Chi tiết dự án</span><h2 id="drawerTitle">Dự án</h2></div><button class="icon-button" id="drawerClose" type="button" aria-label="Đóng chi tiết"><svg><use href="#i-close"></use></svg></button></div>
+    <form id="projectEditForm">
+      <label for="drawerProjectName">Tên dự án</label><input id="drawerProjectName" name="name" type="text" maxlength="60" required>
+      <label for="drawerProjectType">Loại sản phẩm</label><select id="drawerProjectType" name="type"><option>Ứng dụng di động</option><option>Web dashboard</option><option>Website thương hiệu</option><option>Design system</option></select>
+      <label for="drawerProjectStatus">Trạng thái</label><select id="drawerProjectStatus" name="status"><option value="progress">Đang thiết kế</option><option value="review">Đang duyệt</option><option value="done">Hoàn thành</option></select>
+      <label for="drawerProjectProgress">Tiến độ <output id="drawerProgressOutput">0%</output></label><input id="drawerProjectProgress" name="progress" type="range" min="0" max="100" step="1">
+      <div class="drawer-meta" id="drawerProjectMeta"></div>
+      <button class="primary-button drawer-save" type="submit">Lưu thay đổi</button>
+      <button class="danger-button drawer-archive" id="archiveProjectButton" type="button"><svg><use href="#i-archive"></use></svg>Lưu trữ dự án</button>
+    </form>
+  </aside>
+  <div class="drawer-scrim" id="drawerScrim"></div>
+
   <div class="toast" id="dashboardToast" role="status" aria-live="polite"></div>
-  <script src="js/dashboard.js" defer></script>
+  <script src="js/dashboard-data.js?v=3" defer></script>
+  <script src="js/dashboard.js?v=3" defer></script>
 </body>
 </html>
