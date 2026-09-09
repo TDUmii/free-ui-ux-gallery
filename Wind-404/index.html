@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#cbd5db">
+  <meta name="description" content="Một trang 404 lạc trong gió. Minh họa và chữ chuyển động cùng những cơn gió bạn tạo ra.">
+  <title>Lạc trong gió — 404</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/wind.js" defer></script>
+</head>
+<body>
+<!-- DIRECTION: User-approved wind-swept 404, blue-gray paper, restrained hand-drawn illustration.
+FIRST VIEWPORT: A large 404 with a stranded paper character above a serif Vietnamese heading; generous negative space.
+INTERACTION: Two thick wind ribbons draw across the illustration, curl, then erase tail-first and drift out. Delayed wind history bends letters in sequence.
+BOUNDARIES: Standalone vanilla HTML/CSS/JS example. Keyboard, touch and reduced motion retain navigation.
+FINISH: Desktop/mobile visual review, functional navigation and motion checks; document only Wind-404. -->
+  <header class="masthead">
+    <a class="wordmark" href="home.html" aria-label="Nought — về trang chủ">nought<span class="wordmark-dot">.</span></a>
+    <button class="motion-toggle" type="button" aria-pressed="false" aria-label="Tạm dừng chuyển động">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8h12c4 0 4-5 1-5-2 0-3 1-3 2M3 12h16c4 0 4 6 0 6-2 0-3-1-3-2M3 16h6c3 0 3 5 0 5"/></svg>
+      <span>Gió đang thổi</span>
+    </button>
+  </header>
+  <main class="error-page">
+    <div class="artwork" role="img" aria-label="404. Một mẩu giấy nhỏ ngồi trên số không, những luồng gió nhẹ bay ngang qua.">
+      <svg class="scene" viewBox="65 25 590 340" fill="none" aria-hidden="true">
+        <defs><linearGradient id="ink" x1="200" y1="160" x2="490" y2="330" gradientUnits="userSpaceOnUse"><stop stop-color="#64717a"/><stop offset="1" stop-color="#475660"/></linearGradient><linearGradient id="paper" x1="350" y1="115" x2="401" y2="219" gradientUnits="userSpaceOnUse"><stop stop-color="#fffdf3"/><stop offset="1" stop-color="#e7ede9"/></linearGradient><radialGradient id="shadow"><stop stop-color="#455662" stop-opacity=".22"/><stop offset="1" stop-color="#455662" stop-opacity="0"/></radialGradient></defs>
+        <ellipse cx="360" cy="327" rx="224" ry="25" fill="url(#shadow)"/>
+        <g class="ground" stroke="#6c7b83" stroke-linecap="round"><path d="M111 310h500" stroke-width="2"/><path d="M98 321h102m-10 13h32m269-9h98m-74 14h-67m157-10h24"/></g>
+        <g class="number number-left"><path d="M177 151 139 166 133 308 178 310 222 285 238 312 279 312 255 269 271 260 254 233 239 242 177 151ZM167 211 208 259 164 281 167 211Z" fill="url(#ink)"/></g>
+        <g class="number number-zero"><path d="M363 149c-57-9-82 20-92 78-11 60 1 83 45 86 48 5 77-22 86-79 10-55 1-79-39-85Zm-9 34c19 3 20 20 13 53-6 34-16 47-33 43-16-4-18-18-12-49 5-29 15-50 32-47Z" fill="#f5f5eb" stroke="#52616b" stroke-width="2.4"/><path d="M308 291c13 10 37 8 50-4" stroke="#d2dbda" stroke-width="5" stroke-linecap="round"/></g>
+        <g class="number number-right"><path d="m511 152-43-8-88 103-5 32 84 13-5 25 40 6 4-25 27 4 5-33-26-4 7-113Zm-45 58-3 49-35-6 38-43Z" fill="url(#ink)"/><path d="m468 144 11 10 31 5" stroke="#829099" stroke-width="3" opacity=".5"/></g>
+        <g class="character">
+          <g class="paper-body">
+            <path d="M349 89c22-5 50-2 72 8l-15 15-9 62c-19-7-40-7-59-2l9-66 2-17Z" fill="url(#paper)" stroke="#465863" stroke-width="2.5" stroke-linejoin="round"/>
+            <path class="paper-corner" d="m349 89 12 18-14-1" fill="#dce5e5" stroke="#465863" stroke-width="2" stroke-linejoin="round"/>
+            <path d="m366 120 7-2m15 1 7 3" stroke="#465863" stroke-width="2" stroke-linecap="round"/>
+            <g class="eyes" fill="#465863"><ellipse cx="371" cy="130" rx="2" ry="3.2"/><ellipse cx="390" cy="132" rx="2" ry="3.2"/></g>
+            <path d="m382 134-2 6h4m-13 10q7-5 13 0" stroke="#465863" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M346 164q-13 2-15 18m-2-1 5 2m63-15q13 1 14 17m-3 0h7" stroke="#465863" stroke-width="2.5" stroke-linecap="round"/>
+          </g>
+          <path class="leg leg-left" d="M359 171q-7 16-4 22l-9 1" stroke="#465863" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="leg leg-right" d="M384 173q-1 16 5 20l7-2" stroke="#465863" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="copy">
+      <h1 aria-label="Hình như trang này bay mất rồi."><span class="headline-line" aria-hidden="true">Hình như trang này</span><span class="headline-line" aria-hidden="true">bay mất rồi.</span></h1>
+      <p>Chỉ còn chút gió ở địa chỉ bạn vừa ghé.</p>
+      <nav class="actions" aria-label="Rời trang lỗi">
+        <a class="home-link" href="home.html">Về trang chủ <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="back-link" href="home.html" id="go-back">Quay lại</a>
+      </nav>
+    </div>
+    <div class="leaves" aria-hidden="true"></div>
+  </main>
+  <footer><span class="hint"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 3 11 9-6 1-3 6-2-16Z"/></svg><span>Khẽ di chuột. Gió sẽ theo bạn.</span></span><a href="https://github.com/TDUmii/free-ui-ux-gallery">TDUmii <span>— Free UI/UX</span></a></footer>
+</body>
+</html>
