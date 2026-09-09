@@ -31,9 +31,11 @@ Visual and interaction inspiration: [SETTIGATION's wind-powered 404](https://www
 
 Typeface: Lora, distributed under the SIL Open Font License (see `assets/fonts/OFL.txt`).
 
-Source: MIT, under the gallery's root license. TDUmii — Free UI/UX.
+Source: MIT, under the gallery's root license. TDUmii - Free UI/UX.
 
 ## Validation
+
+See [AUDIT.md](AUDIT.md) for the latest bounded review and its open accessibility and performance findings.
 
 The final ribbon animation was reviewed across multiple desktop phases and at a 390px mobile viewport, with no horizontal overflow observed. Earlier browser checks verified local font loading, home/back navigation, and pause-state changes. QA images remain local and are excluded from the source-only publication.
 
