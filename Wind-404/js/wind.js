@@ -21,6 +21,11 @@
     });
   });
   const field = document.querySelector('.leaves');
+  let fieldSize = {width:field.clientWidth, height:field.clientHeight};
+  const fieldObserver = new ResizeObserver(([entry]) => {
+    fieldSize = {width:entry.contentRect.width, height:entry.contentRect.height};
+  });
+  fieldObserver.observe(field);
   const svgNS = 'http://www.w3.org/2000/svg';
   const scene = document.querySelector('.scene');
   const trails = document.createElementNS(svgNS, 'g');
@@ -67,6 +72,7 @@
   const hint = document.querySelector('.hint span');
   if (coarse.matches) hint.textContent = 'Chạm nhẹ để gọi một cơn gió.';
   function renderState() {
+    root.classList.toggle('motion-enabled',!paused);
     toggle.setAttribute('aria-pressed',String(paused));
     toggle.setAttribute('aria-label',paused?'Bật chuyển động':'Tạm dừng chuyển động');
     toggle.querySelector('span').textContent = paused?'Gió đang nghỉ':'Gió đang thổi';
@@ -106,7 +112,7 @@
       const local=sample.value;
       letter.style.transform=`translate(${(local*.7).toFixed(2)}px,${(-Math.abs(local)*.3).toFixed(2)}px) rotate(${(local*1.6).toFixed(2)}deg)`;
     });
-    const {width,height}=field.getBoundingClientRect();
+    const {width,height}=fieldSize;
     particles.forEach(p => {
       // Airborne pieces keep traveling in a light breeze, with inertia under stronger gusts.
       const desired=68+wind*35+force*26;
@@ -137,7 +143,7 @@
   window.addEventListener('pointerdown',event=>{if(!paused&&event.pointerType==='touch'){const direction=event.clientX<innerWidth/2?1:-1;force=direction*4;if(elapsed-lastPointerGust>.8){spawnGust(direction,1.3);lastPointerGust=elapsed;}}},{passive:true});
   document.querySelector('.home-link').addEventListener('pointerenter',()=>{if(!paused)force=clamp(force+1.3,-6,6);});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else start();});
-  reduced.addEventListener('change',event=>{paused=event.matches;force=0;wind=0;root.style.setProperty('--wind','0');letters.forEach(l=>l.style.transform='');renderState();if(paused){cancelAnimationFrame(frame);frame=0;}else start();});
+  reduced.addEventListener('change',event=>{paused=event.matches;force=0;wind=0;letterWind=0;windHistory.length=0;root.style.setProperty('--wind','0');letters.forEach(l=>l.style.transform='');renderState();if(paused){cancelAnimationFrame(frame);frame=0;}else start();});
   document.querySelector('#go-back').addEventListener('click',event=>{
     if(document.referrer){try{if(new URL(document.referrer).origin===location.origin&&history.length>1){event.preventDefault();history.back();}}catch{}}
   });

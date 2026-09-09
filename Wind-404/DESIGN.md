@@ -4,7 +4,7 @@ description: A quiet Vietnamese error page with a paper character and a shared w
 colors:
   sky: "#cbd5db"
   ink: "#243540"
-  muted: "#52636e"
+  muted: "#455762"
   paper: "#fafbf4"
   sky-center: "#e1e7e8"
   sky-middle: "#d2dce0"
@@ -55,6 +55,8 @@ Cool neutral tones establish the atmosphere. The page uses a radial gradient cen
 
 The `paper` token is declared in the stylesheet; individual SVG paper fills are authored separately. Preserve those illustration values when adjusting the surrounding palette.
 
+Muted text has a calculated contrast ratio of approximately 4.76:1 against the darkest sky stop, `#c5cfd7`. This is a source-color calculation, not a claim of browser visual verification.
+
 ## Typography
 
 `WindSerif` is the locally hosted Lora regular font with `font-display: swap`. It supplies the expressive headline and wordmark. Arial/Helvetica supplies compact supporting text and controls. The headline remains two explicit lines; JavaScript wraps words and letters for animation while preserving whole words.
@@ -65,7 +67,7 @@ At widths up to 600px, the headline is 36px, body copy is 12px, and wordmark is 
 
 The body is a vertical flex layout with a minimum height of `100svh` and a minimum page width of 320px. Header and footer frame a centered, flexible main composition. Desktop header padding is `30px 48px`; the artwork is `min(650px, 80vw)`, followed by the headline, one supporting sentence, and two horizontally arranged recovery actions.
 
-The SVG uses a tight `viewBox="65 25 590 340"` to give the illustration greater presence. Its left 4 is an independently drawn angular silhouette with an open triangular counter.
+The SVG uses a tight `viewBox="65 25 590 340"` to give the illustration greater presence, with overflow clipped to its viewport. Its left 4 is an independently drawn angular silhouette with an open triangular counter.
 
 At 600px and below, header side padding becomes 24px, main side padding becomes 20px, and artwork expands to 108% of its container with a 500px cap. The footer wraps with a centered interaction hint on its own line. At 1500px and above, artwork becomes 720px. Desktop viewports no taller than 730px use 480px artwork and tighter vertical spacing. Keep these adaptations coordinated so the illustration and recovery actions remain one composition.
 
@@ -82,7 +84,8 @@ The illustration uses irregular numeral silhouettes, folded paper, rounded strok
 - **Recovery navigation:** “Về trang chủ” is a filled pill with a minimum height of 49px and an arrow. Hover lifts it 2px, changes its fill, and moves the arrow 4px. “Quay lại” has a 44px minimum height and a thin underline with a 6px offset. Both retain real `home.html` fallback destinations without JavaScript.
 - **Motion control:** A transparent header button with a 44px minimum height toggles the simulation and blinking. Its visible label and accessible label describe the current action/state, and `aria-pressed` is true while paused. Pausing freezes the current pose.
 - **Signature shared wind:** An initial gust and automatic gusts every 2.5-2.8 seconds keep the page active without pointer input. Each gust contains dark and light ribbons, with the light curve delayed by .18 animation seconds. Stroke dashes reveal the head and erase the tail; age-based drift and fading complete the motion before the group is removed. A gust-age envelope drives smoothed numeral tilt, paper lean, folded corner, and legs. Letters sample stored wind history with an additional 22ms delay per letter, producing a sequential directional response. Nine airborne pieces maintain a 68px/s baseline drift, modified by wind and input force with smoothed velocity and rotation. Horizontal pointer velocity and left/right touch taps add bounded directional gusts; entering the primary action adds a small impulse. Eye blinking is a separate six-second CSS animation.
-- **Accessibility:** The artwork has a descriptive image label; decorative SVG and leaves are hidden from assistive technology. The heading exposes one complete accessible sentence while its animated text spans are hidden. Links and buttons receive a 2px focus outline with a 6px offset. Reduced-motion preference starts the simulation paused, removes CSS animation/transitions, fixes letter transforms, and hides leaves and traveling trails. The user can explicitly resume the simulation. Animation scheduling stops while the tab is hidden; touch users receive a tap-specific hint.
+- **Accessibility:** The artwork has a descriptive image label; decorative SVG and leaves are hidden from assistive technology. The heading exposes one complete accessible sentence while its animated text spans are hidden. Links and buttons receive a 2px focus outline with a 6px offset. Wordmark and footer links have minimum dimensions of 44px by 44px. Reduced-motion preference starts the simulation paused, removes CSS animation/transitions, fixes letter transforms, and hides leaves and traveling trails. Explicitly resuming adds `motion-enabled` to the root element, allowing CSS motion and visible particles to resume consistently with JavaScript. Pausing removes that override; a system preference change resets the wind values and letter history. Touch users receive a tap-specific hint.
+- **Animation scheduling:** Animation stops while the tab is hidden. A `ResizeObserver` caches the particle field's dimensions when its size changes; animation frames use those cached values instead of measuring layout each frame.
 - **Demo boundaries:** Home opens the included labeled demo destination. Back invokes browser history only when a same-origin referrer and usable history exist; otherwise it follows the demo-home link. This page does not configure a host's missing-route behavior or HTTP 404 status. Integration requires real home destinations, host/router configuration, and suitable asset URLs for nested routes.
 
 ## Do's and Don'ts

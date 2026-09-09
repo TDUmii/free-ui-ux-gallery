@@ -1,42 +1,58 @@
 # Wind 404
 
-A quiet, wind-swept error page with an original paper character, responsive lettering, and a shared wind field. Built with HTML, CSS, and vanilla JavaScript; no install or build step.
+A free interactive error-page experience with a quiet blue-gray atmosphere, a stranded paper character, and flowing wind ribbons that carry movement from the illustration into the typography.
 
-## Run
+## Highlights
 
-Open `index.html` directly, or serve the gallery root with `python -m http.server 4173 --bind 127.0.0.1` and visit `http://127.0.0.1:4173/Wind-404/`.
+- Two dark and light wind ribbons curl across the 404 illustration, drawing from the head and dissolving from the tail.
+- Gentle gusts arrive automatically, keeping the scene alive even when the pointer is still.
+- Move the pointer to create directional gusts, or tap either side of a touch screen to send a breeze through the scene.
+- The paper character, drifting pieces, and individual headline letters respond to the same wind, with a small delay between letters.
+- Pause and resume the scene from the wind control in the header.
+- System reduced-motion preferences start the illustration still; explicitly enabling motion restores the complete animation.
+- Vietnamese copy, visible keyboard focus, readable contrast, and responsive layouts support the recovery flow.
+- Home and back links connect to a clearly labeled local demo destination.
+- No dependencies, package installation, or build step are required.
 
-## Interactions
+## Run locally
 
-- Two thick dark and light wind ribbons curl in front of the illustration. Their heads draw progressively while their tails erase, drift, and fade. Automatic gusts continue without pointer input.
-- Gusts make the paper lean; letters follow stored wind history with a 22ms delay between successive characters. Airborne pieces drift with inertia.
-- Move the pointer to add directional gusts. Pointer speed affects the wind strength.
-- On touch screens, tap either half of the page to create a gust.
-- Use the wind button to pause/resume motion. System reduced-motion preferences are respected by default.
-- The home link opens the included, explicitly labeled demo destination. Back returns to a same-origin referring page when available, otherwise to the demo home.
-- Animation stops when the tab is hidden. Navigation works without JavaScript.
+Open `index.html` directly in a browser, or start a static web server from this directory:
 
-## Integration
+```bash
+python -m http.server 8080
+```
 
-Replace the `home.html` destinations with your site's real homepage. Configure your host/router to serve this page for missing routes and return HTTP status 404. This standalone demo does not change hosting configuration. Use root-relative asset URLs when installing it as a site-wide error page for nested routes.
+Then visit `http://localhost:8080`.
 
-## Files and credits
+The home button opens `home.html`, a demonstration destination. The back link uses same-origin browser history when available and otherwise opens that demo home. Navigation remains available without JavaScript.
 
-- `css/style.css`: layout, responsive rules, illustration transforms, motion preferences.
-- `js/wind.js`: shared wind simulation, particles, letter motion, controls.
-- `assets/`: locally hosted typeface and favicon. Illustration paths are authored inline for independent animation.
-- `home.html`: working demo navigation destination.
+## Structure
 
-Visual and interaction inspiration: [SETTIGATION's wind-powered 404](https://www.tiktok.com/@settigation/video/7681287204626337042). This implementation is independently authored, with Vietnamese copy and a new paper character; it does not contain extracted video artwork or source code.
+```text
+Wind-404/
+|-- assets/
+|   |-- fonts/      # Local Lora typeface and its license
+|   `-- favicon.svg
+|-- css/            # Layout, illustration, motion and responsive styles
+|-- js/             # Wind ribbons, particles, controls and navigation
+|-- tests/          # Motion-state regression checks
+|-- home.html       # Demo destination
+|-- index.html      # Interactive 404 page
+|-- AUDIT.md        # Review findings and correction evidence
+|-- DESIGN.md       # Design and interaction decisions
+`-- README.md
+```
 
-Typeface: Lora, distributed under the SIL Open Font License (see `assets/fonts/OFL.txt`).
+## Use in your website
 
-Source: MIT, under the gallery's root license. TDUmii - Free UI/UX.
+Replace the `home.html` links with your real homepage. Configure your host or router to serve this page for missing routes and return HTTP status 404. Use root-relative asset URLs when installing the page as a site-wide error page for nested routes. This standalone example does not change your hosting configuration.
 
-## Validation
+## Credits
 
-See [AUDIT.md](AUDIT.md) for the latest bounded review and its open accessibility and performance findings.
+The Lora typeface is bundled locally under the [SIL Open Font License](assets/fonts/OFL.txt). The inline illustration, wind animation, and favicon are authored as part of this interface.
 
-The final ribbon animation was reviewed across multiple desktop phases and at a 390px mobile viewport, with no horizontal overflow observed. Earlier browser checks verified local font loading, home/back navigation, and pause-state changes. QA images remain local and are excluded from the source-only publication.
+## License
 
-The earlier Impeccable detector ran in degraded regex-only mode because optional parser packages were unavailable; it is not a complete accessibility audit. Touch behavior and system reduced-motion behavior are implemented but have not been tested on a physical mobile device or with a changed OS preference.
+Source code is available under the [MIT License](../LICENSE). The Lora font retains its SIL Open Font License.
+
+© 2026 TDUmii - Free UI/UX.

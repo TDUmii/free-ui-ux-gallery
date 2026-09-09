@@ -1,63 +1,48 @@
 # Wind 404 audit
 
-Reviewed on 2026-09-09 after the short-hyphen copy update. This is one bounded source and browser review, not a complete accessibility certification or a new artwork-fidelity assessment.
+Initial review and correction pass: 2026-09-09.
 
-## Implementation integrity
+The initial browser review identified four issues. All four have now been addressed in the source. Three controller regression tests pass. The browser automation tool failed to initialize during the correction pass, including after a reset, so the final layout and OS media-query behavior have not been visually rechecked.
 
-The intended shared-wind interaction is present, the two navigation actions work, and the responsive composition remains coherent. The page is not an all-clear for accessibility: the contrast and small target findings below remain open.
+## Correction status
 
-| Dimension | Score | Evidence |
+| Original finding | Change | Verification |
 | --- | --- | --- |
-| Accessibility | 2/4 | Accessible heading and artwork labels, keyboard focus and working pause; muted text contrast is insufficient in darker regions. |
-| Performance | 3/4 | No frameworks, bounded gust lifecycle, hidden-tab scheduling guard; layout measurement remains inside the animation loop. |
-| Responsive design | 3/4 | No horizontal overflow at 320, 435 and 1440px; footer link has a small touch target. |
-| Theming | 3/4 | Intentional light palette with core tokens; some illustration colors remain local literals. No dark theme is required by the brief. |
-| Implementation integrity | 4/4 | Working standalone example, honest demo destination, authored wind ribbons and consistent copy. |
-| Total | 15/20 | Good overall, with open accessibility work. |
+| P1 - Muted text contrast | Changed `--muted` from `#52636e` to `#455762`. | Calculated contrast against darkest gradient color `#c5cfd7` improved from 3.94:1 to 4.76:1. Rendered confirmation pending. |
+| P2 - Small peripheral targets | Wordmark and footer links now use inline flex alignment and minimum 44px width/height. | CSS verified; new rendered dimensions pending. |
+| P2 - Mixed reduced-motion resume | One `motion-enabled` root class reflects explicit playback state; reduced-motion CSS suppression applies only when the class is absent. Preference changes reset wind history and pause/resume consistently. | Controller tests cover reduced-motion startup, explicit override, pause, preference changes and single-loop scheduling. Real OS preference behavior pending. |
+| P3 - Per-frame measurement | Field dimensions are cached and refreshed by `ResizeObserver`. | Controller test resizes the field and runs frames with synchronous bounding-box reads configured to fail. Test passes. |
 
-## Open findings
+## Regression checks
 
-### P1 - Muted text contrast
+Run with Node.js:
 
-Location: `css/style.css`, `--muted`, `.motion-toggle`, `.copy p`, and `footer`.
+```bash
+node --test tests/motion.test.cjs
+```
 
-The muted text color is `#52636e`. Its contrast against the darkest gradient color `#c5cfd7` is 3.94:1. Sampling the current 435x698 capture near the footer gives a background of `(207, 214, 222)` and approximately 4.25:1. This is below the 4.5:1 normal-text threshold. The primary button text is approximately 11.78:1 and the main ink against the darkest ground is approximately 8.01:1.
+Three tests pass:
 
-Suggested correction: darken the shared muted token enough to meet 4.5:1 over the whole gradient, then verify actual rendered text regions.
+- Reduced-motion startup stays still; explicit resume enables the complete shared playback state.
+- System preference changes reset motion and do not duplicate animation loops.
+- Hidden tabs stop scheduling; resize updates do not require per-frame synchronous layout reads.
 
-### P2 - Small peripheral link targets
+The harness executes the real controller with a minimal DOM and media-preference model. It does not render CSS, simulate a physical touchscreen, or replace browser testing.
 
-Location: `css/style.css`, `footer a` and `.wordmark`.
+JavaScript syntax validation and `git diff --check` also pass. The earlier detector used degraded regex analysis because optional parsers were unavailable; its empty result is not complete audit coverage.
 
-At the current mobile-sized viewport, the author link measures about 33x11px and the wordmark about 90x34px. The primary action is 150x49px, back is 44x44px and the motion control is 104x44px. The author link is particularly difficult to tap.
+## Earlier browser evidence
 
-Suggested correction: provide at least 44px of clickable height and an adequate width for the peripheral links, preserving their visual text sizes.
+Before the four corrections, the browser review confirmed:
 
-### P2 - Reduced-motion resume has mixed behavior
+- No horizontal overflow at 320x740, 435x698 and 1440x900.
+- Local font loading, frozen ribbon state while paused, and visible keyboard focus.
+- Home and back navigation, including activating the home link with Enter.
+- No error or warning console messages during that pass.
+- Short ASCII hyphens in visible copy, labels and titles after reload.
 
-Location: `js/wind.js`, motion-toggle handler; `css/style.css`, reduced-motion media query.
+These observations describe the earlier build. They are not a claim that the final correction pass received browser validation.
 
-Source inspection shows that the toggle can resume JavaScript while the system still requests reduced motion. The label then says wind is running, but CSS continues hiding the ribbons and particles and fixing letter transforms; paper/number transforms may still update. This produces an inconsistent opt-in state. This branch was identified in source, not exercised by changing the user's OS preference.
+## Documentation
 
-Suggested correction: either keep the control clearly in reduced-motion mode or implement a deliberate user override applied consistently to all decorative motion.
-
-### P3 - Per-frame layout measurement
-
-Location: `js/wind.js`, `field.getBoundingClientRect()` inside `tick`.
-
-The field size is read after animation style writes on every frame. It can require style/layout synchronization even though the field size normally stays unchanged. No performance trace was recorded, so this is an optimization opportunity, not proof of dropped frames.
-
-Suggested correction: cache the field dimensions and refresh on resize rather than measuring them every animation frame.
-
-## Verified behavior
-
-- The local font loads.
-- No horizontal overflow at 320x740, 435x698, and 1440x900.
-- The pause action freezes the ribbon markup across separate observations.
-- Keyboard Tab reaches the home link with a visible solid focus outline; Enter opens the demo home.
-- The demo return link and the 404 back link complete the home/404 navigation loop.
-- No browser error or warning logs were reported during this pass.
-- Authored page titles, visible copy and labels use short ASCII hyphens after reload.
-- JavaScript syntax and `git diff --check` pass.
-
-The bundled detector fell back to degraded regex analysis because optional HTML/CSS parser packages were missing. Its empty finding list is not evidence of complete coverage. Physical touch, screen readers, browser text enlargement, and OS reduced-motion changes were not exercised. QA screenshots stay local under the ignored `docs/` directory.
+The README now introduces the project in the gallery's BamBo format: highlights, local setup, structure, integration, credits and license. Social-video links have been removed as requested. Font licensing and the root MIT license link remain intact. QA captures are local only and are ignored by Git.
