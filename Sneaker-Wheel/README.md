@@ -40,7 +40,6 @@ docs/verify.cjs
 
 ## Artwork and credits
 
-- Visual reference: the user-provided `Six_sneakers__one_spinning_wheel__built_with_a_little_HTML___CSS___Which_colorway_are_you_copping-_frames` folder. Original reference authorship and license were not supplied. No reference frames are redistributed here.
 - `assets/sneakers.png`: original AI-generated, unbranded product concept atlas created with the built-in Imagegen tool. The exact generation prompt is in `docs/asset-prompt.txt` and PNG metadata. The user authorized local background extraction with rembg; the shipping PNG has a real alpha channel. These are illustrations, not photographs of products for sale.
 - Manrope by Mikhail Sharanda and contributors, self-hosted under the SIL Open Font License in `assets/OFL-Manrope.txt`. Source: [Google Fonts Manrope](https://github.com/google/fonts/tree/main/ofl/manrope).
 - Interface implementation: TDUmii - Free UI/UX. Source code follows the gallery's MIT license. Third-party font licensing remains separate.
