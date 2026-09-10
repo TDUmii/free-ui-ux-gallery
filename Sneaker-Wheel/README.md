@@ -1,49 +1,67 @@
 # STRIDE · Aurora Sneaker Wheel
 
-A standalone sneaker colorway explorer inspired by the supplied six-sneaker spinning-wheel reference. Six original product-concept images orbit an off-screen axis while the background, title, description, and selected swatch change together.
+A responsive sneaker colorway explorer built with plain HTML, CSS, and JavaScript. Six sneaker illustrations rotate around an off-screen axis while the background, product name, description, and selected color update together.
 
-![Desktop preview](docs/preview-desktop.png)
+## Run locally
 
-## Run
+Download the `Sneaker-Wheel` folder and open `index.html` in a modern browser. Keep the folder structure intact so the stylesheet, script, images, and font can load.
 
-Open `index.html` directly, or serve the gallery root:
+For an optional local server, open a terminal **inside the `Sneaker-Wheel` folder** and run:
 
-```powershell
+```sh
 python -m http.server 4175 --bind 127.0.0.1
 ```
 
-Then visit [the local demo](http://127.0.0.1:4175/Sneaker-Wheel/). No build step, CDN, package installation, or account is required to run the page.
+Then open [http://127.0.0.1:4175/](http://127.0.0.1:4175/).
 
-## Interactions
+Python is only needed for this optional server. The website requires no installation, build step, API keys, or backend. Images and fonts are included locally.
 
-- Choose any of six color swatches, use the previous/next buttons, or swipe horizontally across the stage.
-- With focus inside the stage, use Left/Right to rotate, Home for the first color, and End for the last.
-- Save one favorite locally and recall it with the heart button. Storage failures fall back to the current visit.
-- Enable optional auto rotation in the footer. Manual navigation, focus entering the stage, and hiding the tab stop it.
-- Reduced-motion settings disable animated transitions and hide auto rotation.
+## Features
 
-The reference's code-editor panels are video presentation material, so the demo focuses on the product stage. Mobile uses the shoe above the product details. The displayed $695 is a reference-inspired concept price; this is not a store. The primary action saves a favorite rather than accepting orders.
+- Six colorways with coordinated wheel and background transitions.
+- Direct color selection, previous/next buttons, and horizontal swipe navigation.
+- Keyboard controls within the showcase: Left/Right to rotate, Home for the first color, and End for the last.
+- One saved favorite using browser local storage, with a visit-only fallback when storage is unavailable.
+- Optional auto rotation. Manual navigation, focus entering the showcase, or hiding the tab stops it.
+- Responsive desktop and mobile layouts, visible keyboard focus, and reduced-motion support.
+- A custom SVG favicon.
 
-## Files
+This is a product design demo. The displayed $695 price is illustrative, and the main button saves a colorway. There is no checkout or payment processing.
+
+## Project structure
 
 ```text
-index.html
-css/style.css
-js/wheel.js
-assets/sneakers.png
-assets/manrope-latin.woff2
-assets/OFL-Manrope.txt
-docs/asset-prompt.txt
-docs/prepare-assets.py
-docs/verify.cjs
+Sneaker-Wheel/
+├── index.html
+├── README.md
+├── LICENSE
+├── .gitignore
+├── css/
+│   └── style.css
+├── js/
+│   └── wheel.js
+└── assets/
+    ├── favicon.svg
+    ├── sneakers.png
+    ├── manrope-latin.woff2
+    └── OFL-Manrope.txt
 ```
 
-## Artwork and credits
+`.gitignore` keeps local tools and generated verification files out of the repository. It is not required to serve the website.
 
-- `assets/sneakers.png`: original AI-generated, unbranded product concept atlas created with the built-in Imagegen tool. The exact generation prompt is in `docs/asset-prompt.txt` and PNG metadata. The user authorized local background extraction with rembg; the shipping PNG has a real alpha channel. These are illustrations, not photographs of products for sale.
-- Manrope by Mikhail Sharanda and contributors, self-hosted under the SIL Open Font License in `assets/OFL-Manrope.txt`. Source: [Google Fonts Manrope](https://github.com/google/fonts/tree/main/ofl/manrope).
-- Interface implementation: TDUmii - Free UI/UX. Source code follows the gallery's MIT license. Third-party font licensing remains separate.
+## Customize
 
-## Development checks
+- Edit the six entries in `js/wheel.js` to change colorway names, swatch colors, backgrounds, and descriptions.
+- Edit `index.html` for the shared page content and concept price.
+- Edit `css/style.css` for typography, layout, and animation timing.
+- `assets/sneakers.png` is a transparent atlas arranged in two columns and three rows. Its order is coral, lime, purple, sand, charcoal, and turquoise. Preserve that layout when replacing the artwork, or update the sprite positions in `js/wheel.js`.
 
-`docs/verify.cjs` uses Playwright and a running local server for the full six-color loop, swatches, favorite persistence, keyboard navigation, synthetic swipe events, 390px/320px layouts, reduced motion, and resource/runtime errors. Set `PLAYWRIGHT_MODULE` to the installed Playwright module path if it is not resolvable locally. Asset preparation is a one-time developer utility and is not required by visitors.
+Favorites are stored under the `stride-favorite` key in the current browser. They are not synced between devices. Storage can vary when opening the page directly as a local file; the optional HTTP server provides a consistent local origin.
+
+## Credits and license
+
+Created by **TDUmii - Free UI/UX**. See the [gallery repository](https://github.com/TDUmii/free-ui-ux-gallery) for more projects.
+
+- Source code: [MIT License](LICENSE).
+- Sneaker artwork: original AI-generated, unbranded product illustrations with transparent backgrounds. These are concept images, not photographs of products offered for sale.
+- Manrope font: Mikhail Sharanda and contributors, distributed under the [SIL Open Font License](assets/OFL-Manrope.txt). [Font source](https://github.com/google/fonts/tree/main/ofl/manrope).

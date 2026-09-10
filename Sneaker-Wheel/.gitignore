@@ -1,4 +1,4 @@
 .asset-tools/
-.impeccable/review/
-docs/*-qa.json
+.impeccable/
+docs/
 __pycache__/

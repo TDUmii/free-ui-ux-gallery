@@ -1,51 +1,107 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ad381d">
-  <meta name="description" content="Six sneakers. One spinning wheel. An interactive colorway concept by TDUmii.">
-  <title>STRIDE · Aurora Collection</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/wheel.js" defer></script>
-</head>
-<body>
-<!-- THESIS: Six sneakers orbit an off-screen axis; the selected color becomes the entire scene.
-OWN-WORLD: The supplied STRIDE reference owns the composition: saturated fields, a softly lit shoe, white sans-serif copy and quiet circular controls.
-STORY: Explore six concept colorways by swatch, arrow or swipe and save a favorite.
-FIRST VIEWPORT: Shoe at left center, translucent product panel at right, cropped neighbors above and below, controls underneath.
-FORM: Reference-pinned radial product wheel, no randomized direction. Standalone HTML/CSS/JS.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Stride Aurora home"><span><strong>STRIDE</strong><span class="brand-divider"> · </span>Aurora</span></a>
-    <span class="collection-label">THE AURORA COLLECTION</span>
-    <button class="favorite-count" type="button" aria-label="Show saved colorway"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="saved-count">0</span></button>
-  </header>
-  <main>
-    <section class="showcase" aria-label="Aurora sneaker colorways" aria-roledescription="carousel" tabindex="0">
-      <div class="spotlight" aria-hidden="true"></div>
-      <div class="wheel-viewport" aria-hidden="true"><div class="wheel" id="wheel"></div></div>
-      <article class="product-panel">
-        <div class="product-copy" aria-live="polite" aria-atomic="true">
-          <p class="collection">STRIDE · AURORA COLLECTION</p>
-          <h1 id="product-name">Solar Flare Aurora Runner</h1>
-          <p class="price">$695.00 <span>Concept price</span></p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ad381d" />
+    <meta
+      name="description"
+      content="Six sneakers. One spinning wheel. An interactive colorway concept by TDUmii."
+    />
+    <title>STRIDE · Aurora Collection</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/wheel.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Stride Aurora home"
+        ><span
+          ><strong>STRIDE</strong
+          ><span class="brand-divider"> · </span>Aurora</span
+        ></a
+      >
+      <span class="collection-label">THE AURORA COLLECTION</span>
+      <button
+        class="favorite-count"
+        type="button"
+        aria-label="Show saved colorway"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"
+          /></svg
+        ><span id="saved-count">0</span>
+      </button>
+    </header>
+    <main>
+      <section
+        class="showcase"
+        aria-label="Aurora sneaker colorways"
+        aria-roledescription="carousel"
+        tabindex="0"
+      >
+        <div class="spotlight" aria-hidden="true"></div>
+        <div class="wheel-viewport" aria-hidden="true">
+          <div class="wheel" id="wheel"></div>
         </div>
-        <div class="swatches" role="group" aria-label="Choose a colorway"></div>
-        <p class="description" id="description">Coral leather, a satin sheen, and a sculpted cream sole. A little sunset energy for your everyday rotation.</p>
-        <button class="save-button" type="button"><span id="save-label">Save this colorway</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button>
-        <p class="demo-note">Design concept. No products for sale.</p>
-      </article>
-      <nav class="wheel-controls" aria-label="Browse sneakers">
-        <button class="arrow previous" type="button" aria-label="Previous colorway"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
-        <span class="position"><span id="current">01</span><span class="position-line"></span>06</span>
-        <button class="arrow next" type="button" aria-label="Next colorway"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
-      </nav>
-      <div class="stage-footer"><span>SIX COLORS. ONE ROTATION.</span><span class="gesture-hint">Use arrows or swipe to explore</span></div>
-    </section>
-  </main>
-  <footer class="page-footer"><span>TDUmii - Free UI/UX</span><button id="motion-toggle" type="button" aria-pressed="false">Auto rotation <span>off</span></button><a href="../README.md">About the gallery <span aria-hidden="true">↗</span></a></footer>
-  <div class="toast" role="status"></div>
-</body>
+        <article class="product-panel">
+          <div class="product-copy" aria-live="polite" aria-atomic="true">
+            <p class="collection">STRIDE · AURORA COLLECTION</p>
+            <h1 id="product-name">Solar Flare Aurora Runner</h1>
+            <p class="price">$695.00 <span>Concept price</span></p>
+          </div>
+          <div
+            class="swatches"
+            role="group"
+            aria-label="Choose a colorway"
+          ></div>
+          <p class="description" id="description">
+            Coral leather, a satin sheen, and a sculpted cream sole. A little
+            sunset energy for your everyday rotation.
+          </p>
+          <button class="save-button" type="button">
+            <span id="save-label">Save this colorway</span
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14m-5-5 5 5-5 5" />
+            </svg>
+          </button>
+          <p class="demo-note">Design concept. No products for sale.</p>
+        </article>
+        <nav class="wheel-controls" aria-label="Browse sneakers">
+          <button
+            class="arrow previous"
+            type="button"
+            aria-label="Previous colorway"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m14 6-6 6 6 6" />
+            </svg>
+          </button>
+          <span class="position"
+            ><span id="current">01</span
+            ><span class="position-line"></span>06</span
+          >
+          <button class="arrow next" type="button" aria-label="Next colorway">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m10 6 6 6-6 6" />
+            </svg>
+          </button>
+        </nav>
+        <div class="stage-footer">
+          <span>SIX COLORS. ONE ROTATION.</span
+          ><span class="gesture-hint">Use arrows or swipe to explore</span>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <span>TDUmii - Free UI/UX</span
+      ><button id="motion-toggle" type="button" aria-pressed="false">
+        Auto rotation <span>off</span></button
+      ><a href="https://github.com/TDUmii/free-ui-ux-gallery"
+        >About the gallery <span aria-hidden="true">↗</span></a
+      >
+    </footer>
+    <div class="toast" role="status"></div>
+  </body>
 </html>
