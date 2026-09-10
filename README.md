@@ -8,6 +8,7 @@ A collection of free user interface projects designed and built by **TDUmii**. E
 | --- | --- | --- |
 | [BamBo Login](BamBo-Login/) | An interactive login page featuring a cheerful panda, a pull-cord lamp, and a vintage storybook aesthetic | HTML, CSS, JavaScript |
 | [Wind 404](Wind-404/) | A wind-swept error page with a stranded paper character, interactive gusts, and gently moving typography | HTML, CSS, JavaScript |
+| [Sneaker Wheel](Sneaker-Wheel/) | Six sneaker colorways on an animated wheel, with matching backgrounds, swipe navigation, and locally saved favorites | HTML, CSS, JavaScript |
 
 ## Project structure convention
 
