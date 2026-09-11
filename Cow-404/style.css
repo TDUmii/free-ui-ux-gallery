@@ -1,0 +1,729 @@
+/* ==========================================================================
+   401 COW ERROR PAGE - STYLESHEET
+   Accurate 1:1 Recreation of the iconic Cow 401 Unauthorized Error Page
+   ========================================================================== */
+
+/* Design Tokens & CSS Variables */
+:root {
+  --bg-coral: #f98661;
+  --color-hole: #000000;
+  --color-btn-bg: #ffd000;
+  --color-btn-hover: #ffc400;
+  --color-btn-active: #ebb000;
+  --color-btn-text: #111111;
+  --color-white: #ffffff;
+  --color-shadow: rgba(0, 0, 0, 0.18);
+  
+  --font-display: 'Permanent Marker', cursive, sans-serif;
+  --font-sans: 'Fredoka', 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Animation Timelines (smooth cinematic pacing with full walk across screen) */
+  --t-walk: 2.45s;
+  --t-dive: 0.45s;
+  --t-total-fall: 2.9s;
+  --t-stuck-start: 2.9s;
+  --t-button-start: 2.9s;
+  --t-button-fly: 0.65s;
+  --t-text-start: 3.25s;
+  --t-text-reveal: 0.5s;
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-coral);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+/* Accessibility: visually hidden skip link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Fullscreen Scene Wrapper */
+.scene-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-coral);
+  padding: 2rem;
+}
+
+/* Scene Inner Container */
+.scene-container {
+  position: relative;
+  width: 100%;
+  max-width: 1020px;
+  height: 100%;
+  max-height: 580px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: 404 TEXT, SUBTITLE & GO HOME BUTTON
+   ========================================================================== */
+.error-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 2rem;
+  z-index: 10;
+}
+
+/* 404 Header (Large, bold and commanding chalk display) */
+.error-code-wrapper {
+  position: relative;
+  margin-bottom: 0.2rem;
+}
+
+.error-code {
+  font-family: var(--font-display);
+  font-size: clamp(9.5rem, 21vw, 16.5rem);
+  font-weight: 400;
+  line-height: 0.88;
+  color: var(--color-white);
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 0.10em;
+  margin-bottom: 0.4rem;
+  
+  /* Authentic chalk dry-brush text effect */
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 2px rgba(255, 255, 255, 0.8),
+    4px 4px 10px rgba(0, 0, 0, 0.16);
+
+  /* Animation */
+  opacity: 0;
+  animation: textReveal var(--t-text-reveal) cubic-bezier(0.22, 1, 0.36, 1) var(--t-text-start) forwards;
+}
+
+.error-code .digit {
+  display: inline-block;
+  transform-origin: center bottom;
+}
+
+.error-code .d-4 {
+  transform: rotate(-1.5deg);
+}
+
+.error-code .d-0 {
+  transform: scaleY(1.03);
+}
+
+.error-code .d-4-second {
+  transform: rotate(1.5deg);
+}
+
+/* Subtitle Message */
+.error-message {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-white);
+  margin-bottom: 1.8rem;
+  display: flex;
+  flex-direction: column;
+
+  /* Animation */
+  opacity: 0;
+  animation: textReveal var(--t-text-reveal) cubic-bezier(0.22, 1, 0.36, 1) calc(var(--t-text-start) + 0.1s) forwards;
+}
+
+/* Button Target Area & Button Flying Animation */
+.button-target-area {
+  position: relative;
+  display: inline-block;
+  min-height: 52px;
+}
+
+.btn-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  font-family: var(--font-sans);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.65rem 1.75rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px var(--color-shadow);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  
+  /* Starting hidden until ejected from cow */
+  opacity: 0;
+  transform-origin: center center;
+  animation: buttonFlyArc var(--t-button-fly) cubic-bezier(0.25, 1, 0.5, 1) var(--t-button-start) forwards;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease, box-shadow 0.18s ease;
+}
+
+/* Hover & Active States (enabled after landing) */
+.btn-home:hover {
+  background-color: var(--color-btn-hover);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.btn-home:active {
+  background-color: var(--color-btn-active);
+  transform: scale(0.97) translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.btn-home:focus-visible {
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px var(--color-btn-bg);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: STAGE SECTION & COW ANIMATION ACTORS
+   ========================================================================== */
+.stage-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-canvas {
+  position: relative;
+  width: 440px;
+  height: 260px;
+  flex-shrink: 0;
+}
+
+/* Ground Black Hole */
+.hole {
+  position: absolute;
+  bottom: 40px;
+  left: 220px;
+  width: 170px;
+  height: 22px;
+  background-color: var(--color-hole);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.9);
+}
+
+/* Ground Clipping Container:
+   Uses bottom-only clipping (51px from bottom of stage canvas = hole center line)
+   while keeping top, left, and right infinite (-2000px) so the cow can freely
+   walk across the entire screen from the far left without being clipped! */
+.cow-ground-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: inset(-2000px -2000px 51px -2000px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Base Cow Styles */
+.cow {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   PHASE 1 & 2: WALKING & DIVING COW (One continuous actor)
+   ========================================================================== */
+.cow-walking {
+  position: absolute;
+  bottom: 17px; /* Aligns SVG feet with ground clipping line at 51px from canvas bottom */
+  left: 0;
+  width: 250px;
+  height: 170px;
+  z-index: 2;
+  transform-origin: 154px 125px; /* Pivot at front hoof */
+
+  /* Walks all the way across screen and plunges straight into the hole */
+  animation: cowWalkAndDive var(--t-total-fall) linear 0s forwards;
+}
+
+/* Walking Leg Keyframes (active during entire walk phase) */
+.cow-walking .leg-front-inner {
+  transform-origin: 0 0;
+  animation: swingFront 0.40s ease-in-out 0s infinite alternate;
+}
+
+.cow-walking .leg-front-outer {
+  transform-origin: 0 0;
+  animation: swingFront 0.40s ease-in-out 0.20s infinite alternate-reverse;
+}
+
+.cow-walking .leg-back-inner {
+  transform-origin: 0 0;
+  animation: swingBack 0.40s ease-in-out 0s infinite alternate-reverse;
+}
+
+.cow-walking .leg-back-outer {
+  transform-origin: 0 0;
+  animation: swingBack 0.40s ease-in-out 0.20s infinite alternate;
+}
+
+/* Walking Body Bobbing */
+.cow-walking .body-group {
+  animation: bodyBobbing 0.20s ease-in-out 0s infinite alternate;
+}
+
+/* Walking Tail Sway */
+.cow-walking .tail-anim {
+  transform-origin: 0 0;
+  animation: tailSway 0.40s ease-in-out 0s infinite alternate;
+}
+
+/* Walking Head Nod */
+.cow-walking .head-anim {
+  transform-origin: 0 0;
+  animation: headBob 0.40s ease-in-out 0s infinite alternate;
+}
+
+/* ==========================================================================
+   PHASE 3: STUCK COW IN HOLE (IDLE LOOP)
+   ========================================================================== */
+.cow-stuck {
+  position: absolute;
+  bottom: 31px;
+  left: 215px; /* Torso centered exactly at hole center X = 305px */
+  width: 180px;
+  height: 140px;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: auto;
+  cursor: pointer;
+
+  /* Appears right when dive finishes, then loops indefinitely */
+  animation: stuckAppear 0.01s linear var(--t-stuck-start) forwards;
+}
+
+/* Stuck Cow Kicking Legs */
+.cow-stuck .leg-upper {
+  transform-origin: 58px 58px;
+  animation: kickUpperLeg 1.6s ease-in-out var(--t-stuck-start) infinite;
+}
+
+.cow-stuck .leg-lower {
+  transform-origin: 58px 72px;
+  animation: kickLowerLeg 1.6s ease-in-out calc(var(--t-stuck-start) + 0.35s) infinite;
+}
+
+/* Stuck Cow Tail Wagging */
+.cow-stuck .stuck-tail-anim {
+  transform-origin: 112px 38px;
+  animation: stuckTailWag 1.1s ease-in-out var(--t-stuck-start) infinite alternate;
+}
+
+/* Interactive Click Feedback on Stuck Cow */
+.cow-stuck:hover .stuck-torso {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+}
+
+.cow-stuck.panicking .leg-upper {
+  animation: fastKickUpper 0.22s ease-in-out infinite !important;
+}
+
+.cow-stuck.panicking .leg-lower {
+  animation: fastKickLower 0.22s ease-in-out 0.1s infinite !important;
+}
+
+.cow-stuck.panicking .stuck-tail-anim {
+  animation: fastTailWag 0.18s ease-in-out infinite !important;
+}
+
+.cow-stuck.panicking .click-reaction {
+  opacity: 1;
+  animation: sweatDrop 0.8s ease-out forwards;
+}
+
+/* ==========================================================================
+   ANIMATION KEYFRAMES
+   ========================================================================== */
+
+/* 1. Combined Cow Walking & Plunging Dive into Hole */
+@keyframes cowWalkAndDive {
+  /* Constant walking speed from off-screen left (-1200px) to hole rim (66px) */
+  0% {
+    transform: translateX(-1200px) translateY(0) rotate(0deg);
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  84.5% {
+    /* 2.45s: Front hooves reach left rim of hole (X = 220px) */
+    transform: translateX(66px) translateY(0) rotate(0deg);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  /* Dive arc into hole */
+  88.5% {
+    /* 2.57s: Front hooves dip into hole, body tilts forward 25deg */
+    transform: translateX(73px) translateY(-12px) rotate(25deg);
+    opacity: 1;
+  }
+  92.5% {
+    /* 2.68s: Diving steep arc 55deg */
+    transform: translateX(81px) translateY(-16px) rotate(55deg);
+    opacity: 1;
+  }
+  96.5% {
+    /* 2.80s: Near vertical 80deg, aligning over hole center */
+    transform: translateX(86px) translateY(2px) rotate(80deg);
+    opacity: 1;
+  }
+  98.5% {
+    /* 2.86s: Plunging vertically 90deg straight into hole center */
+    transform: translateX(89px) translateY(25px) rotate(90deg);
+    opacity: 1;
+  }
+  99.9% {
+    /* 2.897s: Plunge reaches bottom, exactly matching stuck cow position */
+    transform: translateX(89px) translateY(55px) rotate(90deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(89px) translateY(55px) rotate(90deg);
+    opacity: 0;
+  }
+}
+
+/* Leg Swings */
+@keyframes swingFront {
+  0% { transform: rotate(-18deg); }
+  100% { transform: rotate(18deg); }
+}
+
+@keyframes swingBack {
+  0% { transform: rotate(16deg); }
+  100% { transform: rotate(-16deg); }
+}
+
+@keyframes bodyBobbing {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+@keyframes tailSway {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(10deg); }
+}
+
+@keyframes headBob {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(6deg); }
+}
+
+/* 3. Stuck Cow Appearance & Idle Animations */
+@keyframes stuckAppear {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes kickUpperLeg {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-14deg); }
+  50% { transform: rotate(6deg); }
+  75% { transform: rotate(-8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes kickLowerLeg {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(10deg); }
+  45% { transform: rotate(-12deg); }
+  70% { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes stuckTailWag {
+  0% { transform: rotate(-14deg); }
+  100% { transform: rotate(18deg); }
+}
+
+/* Panicking kicks when user clicks on cow */
+@keyframes fastKickUpper {
+  0% { transform: rotate(-22deg); }
+  50% { transform: rotate(15deg); }
+  100% { transform: rotate(-22deg); }
+}
+
+@keyframes fastKickLower {
+  0% { transform: rotate(16deg); }
+  50% { transform: rotate(-18deg); }
+  100% { transform: rotate(16deg); }
+}
+
+@keyframes fastTailWag {
+  0% { transform: rotate(-24deg); }
+  50% { transform: rotate(26deg); }
+  100% { transform: rotate(-24deg); }
+}
+
+@keyframes sweatDrop {
+  0% { opacity: 0; transform: translateY(-5px) scale(0.6); }
+  30% { opacity: 1; transform: translateY(0) scale(1.1); }
+  80% { opacity: 1; transform: translateY(12px) scale(1); }
+  100% { opacity: 0; transform: translateY(22px) scale(0.8); }
+}
+
+/* 4. Button Fly Arc */
+@keyframes buttonFlyArc {
+  0% {
+    opacity: 1;
+    transform: translate(460px, -55px) rotate(-65deg) scale(0.9);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(260px, -145px) rotate(-190deg) scale(1.05);
+  }
+  65% {
+    opacity: 1;
+    transform: translate(80px, -45px) rotate(-310deg) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-6px, 5px) rotate(-360deg) scale(1.06, 0.94);
+  }
+  92% {
+    opacity: 1;
+    transform: translate(0px, -4px) rotate(-360deg) scale(0.98, 1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-360deg) scale(1, 1);
+  }
+}
+
+/* 5. Text Reveal */
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   HEADER / CONTROLS (Floating, Clean)
+   ========================================================================== */
+.app-header {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.header-left, .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: auto;
+}
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background-color: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  color: var(--color-white);
+  backdrop-filter: blur(8px);
+}
+
+.btn-ctrl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.18);
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.18s ease;
+  outline: none;
+}
+
+.btn-ctrl:hover {
+  background-color: rgba(0, 0, 0, 0.32);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-ctrl:active {
+  transform: translateY(1px);
+}
+
+.btn-ctrl:focus-visible {
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* Toast Message */
+.toast-message {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  padding: 0.6rem 1.4rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 200;
+}
+
+.toast-message.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN / MEDIA QUERIES
+   ========================================================================== */
+
+/* Medium Devices (Tablets / Laptops) */
+@media (max-width: 860px) {
+  .scene-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    max-height: none;
+    gap: 1.5rem;
+  }
+
+  .error-info {
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .stage-section {
+    order: -1;
+  }
+
+  .stage-canvas {
+    transform: translateX(-40px) scale(0.85);
+    transform-origin: center center;
+    margin: 0 auto;
+  }
+
+  @keyframes buttonFlyArc {
+    0% {
+      opacity: 1;
+      transform: translate(0px, -180px) rotate(-65deg) scale(0.9);
+    }
+    30% {
+      opacity: 1;
+      transform: translate(0px, -100px) rotate(-190deg) scale(1.05);
+    }
+    65% {
+      opacity: 1;
+      transform: translate(0px, -30px) rotate(-310deg) scale(1);
+    }
+    85% {
+      opacity: 1;
+      transform: translate(0px, 4px) rotate(-360deg) scale(1.05, 0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(-360deg) scale(1, 1);
+    }
+  }
+}
+
+/* Small Screens (Mobile Phones) */
+@media (max-width: 480px) {
+  .scene-wrapper {
+    padding: 1rem;
+  }
+
+  .error-code {
+    font-size: clamp(6.5rem, 24vw, 8.5rem);
+  }
+
+  .error-message {
+    font-size: 1.45rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-home {
+    font-size: 1.15rem;
+    padding: 0.7rem 1.8rem;
+  }
+
+  .stage-canvas {
+    transform: translateX(-42px) scale(0.74);
+    transform-origin: center center;
+    margin: -10px auto;
+  }
+
+  .app-header {
+    top: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .btn-ctrl span {
+    display: none;
+  }
+
+  .btn-ctrl {
+    padding: 0.45rem;
+  }
+}
