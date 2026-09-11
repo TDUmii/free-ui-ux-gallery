@@ -1,0 +1,849 @@
+/* ==========================================================================
+   VALENTINE'S LOVE LETTER — PIXEL-PERFECT RETRO ROMANTIC STYLING
+   Khớp 100% video gốc: Phong bì, Cung tên, Cửa sổ LOVE, Mèo pixel & Nút né tránh
+   ========================================================================== */
+
+:root {
+  --coral: #d97b73;
+  --coral-dark: #b5574f;
+  --coral-shadow: #c96d66;
+  --red: #e23b4e;
+  --pink-bg: #f8c8d2;
+  --pink-light: #fff2f5;
+  --gingham-pink: rgba(235, 145, 165, 0.24);
+
+  /* Phông chữ: Baloo 2 chuẩn tiếng Việt tròn trịa, siêu cute & Silkscreen 8-bit cho tiếng Anh */
+  --font-display-vi: 'Baloo 2', 'Comfortaa', cursive, sans-serif;
+  --font-display-en: 'Silkscreen', 'Baloo 2', monospace;
+  --font-display: var(--font-display-vi);
+  --font-pixel: var(--font-display);
+  --font-sans: 'Quicksand', 'Baloo 2', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --spring-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.lang-vi {
+  --font-display: var(--font-display-vi);
+  --font-pixel: var(--font-display-vi);
+}
+
+body.lang-en {
+  --font-display: var(--font-display-en);
+  --font-pixel: var(--font-display-en);
+}
+
+/* Tinh chỉnh typography tiếng Việt để dấu câu và chữ hiển thị tự nhiên, không bị lỗi */
+body.lang-vi .milestone-text,
+body.lang-vi .titlebar-text,
+body.lang-vi .love-question,
+body.lang-vi .btn-pixel,
+body.lang-vi .instruction-text,
+body.lang-vi .letter-text,
+body.lang-vi .nav-title {
+  letter-spacing: normal;
+}
+
+body.lang-vi .milestone-title {
+  font-size: 16.5px;
+  font-weight: 700;
+}
+
+body.lang-vi .love-question {
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+body.lang-vi .btn-pixel {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+body.lang-vi .instruction-text {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body.lang-vi .letter-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  background: radial-gradient(circle at 50% 25%, #fff9f9 0%, #fde7ec 55%, #fad3dc 100%);
+  color: #2b2326;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Các trái tim trôi nhẹ nền toàn màn hình */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.ambient-heart {
+  position: absolute;
+  bottom: -30px;
+  pointer-events: none;
+  opacity: 0.55;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.6; }
+  85% { opacity: 0.5; }
+  100% { transform: translateY(-110vh) scale(1.1) rotate(25deg); opacity: 0; }
+}
+
+/* Canvas mưa trái tim chúc mừng */
+.celebration-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Khung bọc ứng dụng web */
+.site-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 18px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Header điều hướng */
+.site-nav {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(217, 123, 115, 0.15);
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.nav-heart {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.nav-title {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  font-weight: 700;
+  color: #a84852;
+  white-space: nowrap;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ffffff;
+  border: 1.5px solid rgba(217, 123, 115, 0.4);
+  color: #7b454a;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s var(--ease-smooth);
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  background: #fff8f9;
+  border-color: var(--coral);
+  color: var(--red);
+  transform: translateY(-1px);
+}
+
+.nav-btn-lang {
+  background: #fff0f3;
+  border-color: rgba(226, 59, 78, 0.45);
+  font-weight: 800;
+  color: #c92f44;
+  padding: 4px 10px;
+}
+
+.nav-btn-lang .lang-text {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.nav-btn-lang:hover {
+  background: #ffe4eb;
+  border-color: var(--red);
+}
+
+.lang-code {
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   KHUNG THẺ CHÍNH (INTERACTIVE CARD)
+   ========================================================================== */
+.interactive-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  min-height: 610px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  box-shadow: 
+    0 20px 45px -10px rgba(217, 123, 115, 0.25),
+    0 4px 16px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 18px 20px;
+  z-index: 5;
+  transition: opacity 0.4s var(--ease-smooth);
+}
+
+.stage.active {
+  display: flex;
+}
+
+/* ==========================================================================
+   GIAI ĐOẠN 1: PHONG BÌ THƯ & CUNG TÊN CUPID
+   ========================================================================== */
+.envelope-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6px;
+  cursor: pointer;
+}
+
+/* Phong bì chuẩn video (envelope_crop.png) */
+.envelope {
+  position: relative;
+  width: 240px;
+  height: 150px;
+  border-radius: 14px;
+  box-shadow: 0 14px 28px -6px rgba(217, 123, 115, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s var(--spring-bounce);
+}
+
+.envelope:hover {
+  transform: translateY(-2px);
+}
+
+.envelope-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#envelopeFlapPoly {
+  transform-origin: 120px 3px;
+  transition: transform 0.5s var(--ease-smooth);
+}
+
+.envelope.opened #envelopeFlapPoly {
+  transform: scaleY(-1) translateY(-6px);
+}
+
+/* Dấu sáp trái tim đỏ ở giữa */
+.heart-seal {
+  position: absolute;
+  top: 62px;
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 6px rgba(226, 59, 78, 0.4));
+  animation: pulseSeal 2s ease-in-out infinite;
+  transition: transform 0.3s var(--spring-bounce);
+}
+
+@keyframes pulseSeal {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.seal-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Dòng chữ kỷ niệm phong cách pixel */
+.milestone-text {
+  margin-top: 18px;
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  font-weight: 700;
+  color: #2b2326;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.5px;
+}
+
+.pixel-heart {
+  font-size: 15px;
+  display: inline-block;
+  animation: hopHeart 1.2s ease-in-out infinite;
+}
+
+@keyframes hopHeart {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Cung tên Cupid chuẩn video (bow_crop.png) */
+.cupid-station {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  touch-action: none;
+}
+
+.bow-wrapper {
+  position: relative;
+  width: 240px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bow-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 6px 10px rgba(109, 53, 17, 0.22));
+}
+
+/* Mũi tên Cupid: Đầu nhọn đỏ, thân gỗ, tim hồng ở đuôi */
+.arrow {
+  position: absolute;
+  top: -6px;
+  width: 20px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.05s linear;
+}
+
+.arrow-tip {
+  width: 18px;
+  height: 18px;
+  margin-bottom: -2px;
+}
+.arrow-tip-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.arrow-shaft {
+  width: 4.5px;
+  flex: 1;
+  background: #783d16;
+  border-radius: 2px;
+}
+
+.arrow-nock-heart {
+  width: 20px;
+  height: 20px;
+  margin-top: -3px;
+}
+.nock-heart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Tay cầm kéo cung */
+.aim-handle {
+  position: absolute;
+  top: 36px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: grab;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  touch-action: none;
+}
+.aim-handle:active {
+  cursor: grabbing;
+}
+
+.aim-cursor-hint {
+  width: 28px;
+  height: 28px;
+  animation: hintBob 1.6s ease-in-out infinite;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25));
+}
+
+@keyframes hintBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.cursor-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.instruction-text {
+  margin-top: 10px;
+  font-family: var(--font-pixel);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #7b454a;
+  text-align: center;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   GIAI ĐOẠN 2: CỬA SỔ RETRO LOVE & MÈO PIXEL
+   ========================================================================== */
+.stage-love-window {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 10px;
+}
+
+/* Khung cửa sổ chuẩn video (window_crop.png) */
+.love-window {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: #fff2f5;
+  border: 5px solid var(--coral);
+  border-radius: 20px;
+  box-shadow: 
+    0 16px 36px -8px rgba(217, 123, 115, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: windowPopIn 0.5s var(--spring-bounce) forwards;
+}
+
+@keyframes windowPopIn {
+  0% { transform: scale(0.65) translateY(30px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.window-titlebar {
+  background: var(--pink-bg);
+  border-bottom: 4px solid var(--coral);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titlebar-text {
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  font-weight: 700;
+  color: #2b2326;
+  letter-spacing: 1px;
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.win-btn {
+  width: 22px;
+  height: 22px;
+  background: #ffffff;
+  border: 2px solid var(--coral);
+  border-radius: 4px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  font-weight: 700;
+  color: #2b2326;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+/* Dải ruy băng 3 trái tim: ❤️ • ❤️ • ❤️ */
+.heart-ribbon-bar {
+  background: #fff8f9;
+  border-bottom: 2px solid rgba(217, 123, 115, 0.25);
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 13px;
+}
+.ribbon-dot {
+  color: #f08da0;
+  font-size: 11px;
+}
+
+/* Thân cửa sổ sọc caro Gingham chuẩn video */
+.window-body {
+  position: relative;
+  min-height: 430px;
+  padding: 16px 14px 20px;
+  background-color: #fff2f5;
+  background-image: 
+    repeating-linear-gradient(0deg, var(--gingham-pink) 0px, var(--gingham-pink) 13px, transparent 13px, transparent 26px),
+    repeating-linear-gradient(90deg, var(--gingham-pink) 0px, var(--gingham-pink) 13px, transparent 13px, transparent 26px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.love-question {
+  font-family: var(--font-pixel);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #3b2b30;
+  text-align: center;
+  line-height: 1.55;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  max-width: 92%;
+  transition: color 0.3s ease;
+}
+
+/* Chú mèo Pixel Canvas */
+.cat-wrapper {
+  position: relative;
+  width: 160px;
+  height: 150px;
+  display: grid;
+  place-items: center;
+}
+
+#catCanvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+  transition: transform 0.25s var(--spring-bounce);
+}
+
+.cat-wrapper.happy #catCanvas {
+  animation: happyCatHop 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes happyCatHop {
+  0% { transform: translateY(0) rotate(-2deg); }
+  100% { transform: translateY(-8px) rotate(2deg); }
+}
+
+/* Khu vực nút bấm YES và NO */
+.buttons-area {
+  position: static;
+  width: 100%;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+  transition: opacity 0.3s ease;
+}
+
+/* Khung viền nét đứt của nút YES (real_buttons_3.png) */
+.btn-yes-dashed {
+  border: 3px dashed var(--coral);
+  border-radius: 16px;
+  padding: 4px;
+  display: inline-flex;
+  transform-origin: center center;
+  transition: transform 0.2s var(--spring-bounce);
+}
+
+/* Style nút Pixel 3D chuẩn retro */
+.btn-pixel {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #8b323b;
+  border: 2px solid var(--coral);
+  box-shadow: 0 4px 0 var(--coral-shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  z-index: 10;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-pixel:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--coral-shadow);
+}
+
+/* Nút NO bay thông minh khắp cửa sổ (không che chữ, không ra khỏi màn hình) */
+.btn-no-wrapper {
+  position: static;
+  min-width: 78px;
+  height: 44px;
+}
+
+.btn-no {
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: left 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.15s ease;
+}
+
+/* Hộp thư gõ phím sau khi bấm YES */
+.letter-box {
+  display: none;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2.5px solid var(--coral);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 6px 18px rgba(217, 123, 115, 0.25);
+  margin-top: 8px;
+  backdrop-filter: blur(8px);
+  animation: windowPopIn 0.4s var(--spring-bounce) forwards;
+}
+
+.letter-text {
+  font-family: var(--font-pixel);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #2b2326;
+  text-align: center;
+  min-height: 48px;
+}
+
+/* Huy hiệu màu xanh chữ lifetime chuẩn video */
+.badge-blue {
+  display: inline-block;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+  letter-spacing: 0.5px;
+}
+
+.letter-action {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-restart {
+  background: var(--coral);
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 123, 115, 0.35);
+  transition: all 0.2s var(--ease-smooth);
+}
+.btn-restart:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+
+/* Footer chân trang */
+.site-footer {
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(120, 60, 70, 0.65);
+  text-align: center;
+}
+
+.personal-credit {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 3px;
+  padding: 6px 10px;
+  color: rgba(120, 60, 70, 0.78);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.personal-credit:hover,
+.personal-credit:focus-visible {
+  color: var(--red);
+  transform: translateY(-1px);
+}
+
+.personal-credit:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.personal-credit span {
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   RESPONSIVE (ĐIỆN THOẠI & MÁY TÍNH)
+   ========================================================================== */
+@media (max-width: 600px) {
+  .site-container {
+    padding: 8px 10px 16px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .site-nav {
+    border-radius: 9999px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 4px;
+  }
+
+  .nav-title { 
+    font-size: 11.5px; 
+  }
+
+  .nav-actions {
+    gap: 5px;
+  }
+  
+  .btn-text { 
+    display: none !important; 
+  }
+
+  .lang-code {
+    display: inline-block !important;
+  }
+
+  .nav-btn { 
+    padding: 4px 7px; 
+    font-size: 12px; 
+  }
+
+  .nav-btn-lang {
+    padding: 4px 8px;
+    gap: 3px;
+  }
+
+  .interactive-card {
+    min-height: min(610px, calc(100vh - 84px));
+    border-radius: 22px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .envelope {
+    width: 215px;
+    height: 135px;
+  }
+
+  .love-window {
+    max-width: 100%;
+  }
+
+  .window-body {
+    min-height: 400px;
+    padding: 12px 10px 16px;
+  }
+}

@@ -10,6 +10,7 @@ A collection of free user interface projects designed and built by **TDUmii**. E
 | [Meow Login](Meow-Login/) | A warm interactive login watched by five expressive cats with privacy reactions and playful button paws | HTML, CSS, JavaScript |
 | [Wind 404](Wind-404/) | A wind-swept error page with a stranded paper character, interactive gusts, and gently moving typography | HTML, CSS, JavaScript |
 | [Cow 404](Cow-404/) | A playful cow error page with a black-hole dive, flying home button, interactive stuck-cow animation, and sound effects | HTML, CSS, JavaScript, SVG, Web Audio API |
+| [Love Letter](Love/) | A romantic Valentine letter with a Cupid bow interaction, pixel-art cat, playful choices, and an animated love-letter reveal | HTML, CSS, JavaScript, Canvas |
 | [Sneaker Wheel](Sneaker-Wheel/) | Six sneaker colorways on an animated wheel, with matching backgrounds, swipe navigation, and locally saved favorites | HTML, CSS, JavaScript |
 
 ## Project structure convention
