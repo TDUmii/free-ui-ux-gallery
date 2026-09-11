@@ -2,6 +2,12 @@
 
 A free interactive error-page experience with a quiet blue-gray atmosphere, a stranded paper character, and flowing wind ribbons that carry movement from the illustration into the typography.
 
+## Preview
+
+![Wind 404 desktop preview](docs/preview.webp)
+
+![Wind 404 mobile preview](docs/mobile.webp)
+
 ## Highlights
 
 - Two dark and light wind ribbons curl across the 404 illustration, drawing from the head and dissolving from the tail.

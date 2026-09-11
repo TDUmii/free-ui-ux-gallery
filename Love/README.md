@@ -2,6 +2,12 @@
 
 A romantic Valentine letter experience with a Cupid bow interaction, a pixel-art cat, playful yes/no choices, and a typed love-letter reveal. The project is a self-contained vanilla HTML, CSS, JavaScript, and Canvas interface for the Free UI/UX Gallery.
 
+## Preview
+
+![Love Letter desktop preview](docs/preview.webp)
+
+![Love Letter mobile preview](docs/mobile.webp)
+
 ## Highlights
 
 - Drag and release the Cupid bow to send the love arrow toward the envelope.

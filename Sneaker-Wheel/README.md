@@ -2,6 +2,12 @@
 
 A responsive sneaker colorway explorer built with plain HTML, CSS, and JavaScript. Six sneaker illustrations rotate around an off-screen axis while the background, product name, description, and selected color update together.
 
+## Preview
+
+![Aurora Sneaker Wheel desktop preview](docs/preview.webp)
+
+![Aurora Sneaker Wheel mobile preview](docs/mobile.webp)
+
 ## Run locally
 
 Download the `Sneaker-Wheel` folder and open `index.html` in a modern browser. Keep the folder structure intact so the stylesheet, script, images, and font can load.

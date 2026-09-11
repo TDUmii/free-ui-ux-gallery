@@ -2,6 +2,12 @@
 
 A playful responsive error-page experience where a cartoon cow walks into a black hole, launches a **Go Home** button, and gets stuck in an animated loop. The interface is built as a self-contained vanilla HTML, CSS, and JavaScript project for the Free UI/UX Gallery.
 
+## Preview
+
+![Cow 404 desktop preview](docs/preview.webp)
+
+![Cow 404 mobile preview](docs/mobile.webp)
+
 ## Highlights
 
 - Multi-stage scene: walking cow, dive into the hole, flying **Go Home** button, error message reveal, and an idle stuck-cow loop.
