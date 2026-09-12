@@ -4,6 +4,11 @@ A playful responsive error-page experience where a cartoon cow walks into a blac
 
 ## Preview
 
+![Cow-404 interactive demo](docs/demo.gif)
+
+[Watch the WebM recording](docs/demo.webm)
+
+
 ![Cow 404 desktop preview](docs/preview.webp)
 
 ![Cow 404 mobile preview](docs/mobile.webp)

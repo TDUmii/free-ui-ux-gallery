@@ -4,6 +4,11 @@ A romantic Valentine letter experience with a Cupid bow interaction, a pixel-art
 
 ## Preview
 
+![Love interactive demo](docs/demo.gif)
+
+[Watch the WebM recording](docs/demo.webm)
+
+
 ![Love Letter desktop preview](docs/preview.webp)
 
 ![Love Letter mobile preview](docs/mobile.webp)

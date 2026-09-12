@@ -4,6 +4,11 @@ A free interactive error-page experience with a quiet blue-gray atmosphere, a st
 
 ## Preview
 
+![Wind-404 interactive demo](docs/demo.gif)
+
+[Watch the WebM recording](docs/demo.webm)
+
+
 ![Wind 404 desktop preview](docs/preview.webp)
 
 ![Wind 404 mobile preview](docs/mobile.webp)

@@ -4,6 +4,11 @@ A responsive sneaker colorway explorer built with plain HTML, CSS, and JavaScrip
 
 ## Preview
 
+![Sneaker-Wheel interactive demo](docs/demo.gif)
+
+[Watch the WebM recording](docs/demo.webm)
+
+
 ![Aurora Sneaker Wheel desktop preview](docs/preview.webp)
 
 ![Aurora Sneaker Wheel mobile preview](docs/mobile.webp)
