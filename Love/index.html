@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="author" content="TDUmii">
   <title>Thư Tình Valentine ❤️</title>
   <meta name="description" content="Thư Tình Valentine lãng mạn - Bắn cung Cupid, mèo pixel ôm tim đáng yêu, bức thư kỷ niệm tình yêu.">
@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Comfortaa:wght@600;700&family=Quicksand:wght@500;600;700&family=Silkscreen:wght@400;700&subset=vietnamese&display=swap" rel="stylesheet">
 
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="lang-vi">
@@ -32,15 +33,15 @@
       </div>
       <div class="nav-actions">
         <!-- Nút chuyển đổi ngôn ngữ Việt / Anh ở góc -->
-        <button class="nav-btn nav-btn-lang" id="btnLang" title="Đổi ngôn ngữ / Switch Language (L)" aria-label="Đổi ngôn ngữ">
+        <button type="button" class="nav-btn nav-btn-lang" id="btnLang" title="Đổi ngôn ngữ / Switch Language (L)" aria-label="Đổi ngôn ngữ">
           <span id="langFlag">🌐</span>
           <span class="lang-code" id="langText">VI</span>
         </button>
-        <button class="nav-btn" id="btnSound" title="Bật / Tắt âm thanh (M)" aria-label="Bật tắt âm thanh">
+        <button type="button" class="nav-btn" id="btnSound" title="Bật / Tắt âm thanh (M)" aria-label="Bật tắt âm thanh">
           <span id="soundIcon">🔊</span>
           <span class="btn-text" id="soundText">Âm thanh</span>
         </button>
-        <button class="nav-btn" id="btnReplay" title="Chơi lại từ đầu (R)" aria-label="Chơi lại từ đầu">
+        <button type="button" class="nav-btn" id="btnReplay" title="Chơi lại từ đầu (R)" aria-label="Chơi lại từ đầu">
           <span>↺</span>
           <span class="btn-text" id="replayText">Chơi lại</span>
         </button>
@@ -125,7 +126,7 @@
             </div>
 
             <!-- Interactive Aim Handle (Pointer & Touch Area) -->
-            <div class="aim-handle" id="aimHandle" role="slider" aria-label="Kéo xuống và thả để bắn mũi tên Cupid" tabindex="0">
+            <div class="aim-handle" id="aimHandle" role="slider" aria-label="Kéo xuống và thả để bắn mũi tên Cupid" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="45" aria-valuenow="0" tabindex="0">
               <div class="aim-cursor-hint">
                 <svg viewBox="0 0 24 24" class="cursor-svg">
                   <path d="M7 2 L17 12 L12 13 L15 19 L12 20 L9 14 L5 17 Z" fill="#ffffff" stroke="#2b2326" stroke-width="1.8"/>
@@ -178,7 +179,7 @@
 
             <!-- Exact Pixel Art Cat Canvas (15x14 Matrix) -->
             <div class="cat-wrapper" id="catWrapper">
-              <canvas id="catCanvas" width="160" height="150" aria-label="Chú mèo đen pixel art ôm trái tim"></canvas>
+            <canvas id="catCanvas" width="160" height="150" role="img" aria-label="Chú mèo đen pixel art ôm trái tim"></canvas>
             </div>
 
             <!-- YES and NO Buttons Playground -->
@@ -204,7 +205,7 @@
             <div class="letter-box" id="letterBox" aria-live="polite">
               <p class="letter-text" id="letterText"></p>
               <div class="letter-action">
-                <button class="btn-restart" id="btnRestart">
+                <button type="button" class="btn-restart" id="btnRestart">
                   ↺ Chơi lại lần nữa
                 </button>
               </div>

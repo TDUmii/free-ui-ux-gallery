@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="author" content="TDUmii">
+  <meta name="description" content="Một trải nghiệm lên kèo hẹn hò năm bước với lựa chọn ngày, giờ, hoạt động và vé hẹn hò cá nhân hóa.">
   <title>Will You Go Out With Me? - Date Planner</title>
 
   <!-- Multi-Format Favicon -->
@@ -37,7 +39,7 @@
 
       <div class="header-actions">
         <!-- Language Switcher Button -->
-        <button id="langToggle" class="btn-header" title="Switch Language">
+        <button type="button" id="langToggle" class="btn-header" title="Switch Language" aria-label="Đổi ngôn ngữ" aria-pressed="false">
           <svg class="header-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="2" y1="12" x2="22" y2="12"></line>
@@ -47,7 +49,7 @@
         </button>
 
         <!-- Sound & Music Toggle -->
-        <button id="soundToggle" class="btn-header btn-sound" title="Toggle Music">
+        <button type="button" id="soundToggle" class="btn-header btn-sound" title="Toggle Music" aria-label="Bật hoặc tắt nhạc" aria-pressed="false">
           <svg class="sound-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
             <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -77,7 +79,7 @@
         </div>
 
         <!-- Back Button (Shown on steps 2 to 5) -->
-        <button class="btn-back" id="btnBack" aria-label="Go Back">
+        <button type="button" class="btn-back" id="btnBack" aria-label="Go Back" disabled aria-hidden="true">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
@@ -91,22 +93,22 @@
         <section class="step-view active" id="step1">
           <div class="step-inner">
             <div class="char-illustration-box">
-              <img src="assets/step1_hug.png" alt="Milk & Mocha Hug" class="char-img hug-anim">
+              <img src="assets/step1_hug.png" alt="Milk & Mocha Hug" width="260" height="190" class="char-img hug-anim">
             </div>
 
             <h1 class="step-title cursive-heading" data-i18n="s1_title">Will you go out with me?</h1>
             <p class="step-subtitle" data-i18n="s1_subtitle">There is only one right answer.</p>
 
             <div class="button-arena" id="buttonArena">
-              <button class="btn-yes" id="btnYes" data-i18n="btn_yes">Yes!</button>
-              <button class="btn-no" id="btnNo" data-i18n="btn_no">No</button>
+              <button type="button" class="btn-yes" id="btnYes" data-i18n="btn_yes">Yes!</button>
+              <button type="button" class="btn-no" id="btnNo" data-i18n="btn_no">No</button>
             </div>
           </div>
 
           <!-- Joyful Overlay when Yes is pressed -->
           <div class="yaas-overlay" id="yaasOverlay">
             <h2 class="yaas-text">YAAS!</h2>
-            <img src="assets/step1_yaas.png" alt="Dancing bear" class="yaas-img">
+            <img src="assets/step1_yaas.png" alt="Dancing bear" width="260" height="210" class="yaas-img">
           </div>
         </section>
 
@@ -116,34 +118,34 @@
         <section class="step-view" id="step2">
           <div class="step-inner">
             <div class="char-illustration-box mini">
-              <img src="assets/step2_heart.png" alt="Bear in heart" class="char-img float-anim">
+              <img src="assets/step2_heart.png" alt="Bear in heart" width="220" height="160" class="char-img float-anim">
             </div>
 
             <h2 class="step-title cursive-heading" data-i18n="s2_title">Yay! When are you free?</h2>
 
             <!-- Day Choice Grid (6 options) -->
             <div class="choices-grid day-grid" id="dayGrid">
-              <button class="choice-card day-card" data-day-index="0">
+              <button type="button" class="choice-card day-card" data-day-index="0" aria-pressed="false">
                 <span class="choice-title" data-i18n="opt_today">Today</span>
                 <span class="choice-sub" id="labelDay0">Aug 6</span>
               </button>
-              <button class="choice-card day-card" data-day-index="1">
+              <button type="button" class="choice-card day-card" data-day-index="1" aria-pressed="false">
                 <span class="choice-title" data-i18n="opt_tomorrow">Tomorrow</span>
                 <span class="choice-sub" id="labelDay1">Aug 7</span>
               </button>
-              <button class="choice-card day-card selected" data-day-index="2">
+              <button type="button" class="choice-card day-card selected" data-day-index="2" aria-pressed="true">
                 <span class="choice-title" id="labelDayName2">Sat</span>
                 <span class="choice-sub" id="labelDay2">Aug 8</span>
               </button>
-              <button class="choice-card day-card" data-day-index="3">
+              <button type="button" class="choice-card day-card" data-day-index="3" aria-pressed="false">
                 <span class="choice-title" id="labelDayName3">Sun</span>
                 <span class="choice-sub" id="labelDay3">Aug 9</span>
               </button>
-              <button class="choice-card day-card" data-day-index="4">
+              <button type="button" class="choice-card day-card" data-day-index="4" aria-pressed="false">
                 <span class="choice-title" id="labelDayName4">Mon</span>
                 <span class="choice-sub" id="labelDay4">Aug 10</span>
               </button>
-              <button class="choice-card day-card" data-day-index="5">
+              <button type="button" class="choice-card day-card" data-day-index="5" aria-pressed="false">
                 <span class="choice-title" data-i18n="opt_surprise">Surprise me</span>
                 <span class="choice-sub" data-i18n="opt_surprise_sub">you choose</span>
               </button>
@@ -154,7 +156,7 @@
               <p class="section-divider-text" data-i18n="and_around">and around...</p>
 
               <div class="choices-grid time-grid" id="timeGrid">
-                <button class="choice-card time-card" data-time-key="morning">
+                <button type="button" class="choice-card time-card" data-time-key="morning" aria-pressed="false">
                   <svg class="card-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
                   </svg>
@@ -162,7 +164,7 @@
                   <span class="choice-sub">10:30</span>
                 </button>
 
-                <button class="choice-card time-card" data-time-key="afternoon">
+                <button type="button" class="choice-card time-card" data-time-key="afternoon" aria-pressed="false">
                   <svg class="card-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -178,7 +180,7 @@
                   <span class="choice-sub">3:00</span>
                 </button>
 
-                <button class="choice-card time-card selected" data-time-key="evening">
+                <button type="button" class="choice-card time-card selected" data-time-key="evening" aria-pressed="true">
                   <svg class="card-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 18a5 5 0 0 0-10 0"></path>
                     <line x1="12" y1="2" x2="12" y2="9"></line>
@@ -192,7 +194,7 @@
                   <span class="choice-sub">7:00</span>
                 </button>
 
-                <button class="choice-card time-card" data-time-key="night">
+                <button type="button" class="choice-card time-card" data-time-key="night" aria-pressed="false">
                   <svg class="card-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                   </svg>
@@ -210,14 +212,14 @@
         <section class="step-view" id="step3">
           <div class="step-inner">
             <div class="char-illustration-box mini">
-              <img src="assets/step3_pillow.png" alt="Bear hugging pillow" class="char-img pulse-anim">
+              <img src="assets/step3_pillow.png" alt="Bear hugging pillow" width="200" height="180" class="char-img pulse-anim">
             </div>
 
             <h2 class="step-title cursive-heading" data-i18n="s3_title">And where are we going?</h2>
 
             <div class="choices-grid activity-grid" id="activityGrid">
               <!-- Coffee -->
-              <button class="choice-card activity-card selected" data-activity-key="coffee">
+              <button type="button" class="choice-card activity-card selected" data-activity-key="coffee" aria-pressed="true">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
                   <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
@@ -230,7 +232,7 @@
               </button>
 
               <!-- Dinner -->
-              <button class="choice-card activity-card" data-activity-key="dinner">
+              <button type="button" class="choice-card activity-card" data-activity-key="dinner" aria-pressed="false">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 8V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"></path>
                   <path d="M2 14h20"></path>
@@ -242,7 +244,7 @@
               </button>
 
               <!-- Movie night -->
-              <button class="choice-card activity-card" data-activity-key="movie">
+              <button type="button" class="choice-card activity-card" data-activity-key="movie" aria-pressed="false">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
                   <line x1="7" y1="2" x2="7" y2="22"></line>
@@ -258,7 +260,7 @@
               </button>
 
               <!-- A long walk -->
-              <button class="choice-card activity-card" data-activity-key="walk">
+              <button type="button" class="choice-card activity-card" data-activity-key="walk" aria-pressed="false">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M13 4v16M17 4v16M7 4h10M7 20h10M4 9h16M4 15h16"></path>
                 </svg>
@@ -275,14 +277,14 @@
         <section class="step-view" id="step4">
           <div class="step-inner">
             <div class="char-illustration-box mini">
-              <img src="assets/step4_tissue.png" alt="Bear wiping tears" class="char-img gently-bob">
+              <img src="assets/step4_tissue.png" alt="Bear wiping tears" width="240" height="170" class="char-img gently-bob">
             </div>
 
             <h2 class="step-title cursive-heading" data-i18n="s4_title">And then?</h2>
 
             <div class="choices-grid activity-grid" id="afterGrid">
               <!-- Dessert -->
-              <button class="choice-card activity-card" data-after-key="dessert">
+              <button type="button" class="choice-card activity-card" data-after-key="dessert" aria-pressed="false">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 2a3 3 0 0 0-3 3c0 2 3 4 3 4s3-2 3-4a3 3 0 0 0-3-3z"></path>
                   <path d="M4 11h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"></path>
@@ -292,7 +294,7 @@
               </button>
 
               <!-- Stargazing -->
-              <button class="choice-card activity-card selected" data-after-key="stargazing">
+              <button type="button" class="choice-card activity-card selected" data-after-key="stargazing" aria-pressed="true">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>
@@ -301,7 +303,7 @@
               </button>
 
               <!-- A drive -->
-              <button class="choice-card activity-card" data-after-key="drive">
+              <button type="button" class="choice-card activity-card" data-after-key="drive" aria-pressed="false">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
                   <circle cx="7" cy="12" r="3"></circle>
@@ -312,7 +314,7 @@
               </button>
 
               <!-- Not going home -->
-              <button class="choice-card activity-card" data-after-key="stay">
+              <button type="button" class="choice-card activity-card" data-after-key="stay" aria-pressed="false">
                 <svg class="card-icon lg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -337,7 +339,7 @@
               <!-- Left Stub: Admit Two -->
               <div class="ticket-stub">
                 <div class="stub-img-wrap">
-                  <img src="assets/step5_admit.png" alt="Admit Two" class="stub-img">
+                  <img src="assets/step5_admit.png" alt="Admit Two" width="120" height="120" class="stub-img">
                 </div>
                 <div class="stamp-saved" id="ticketStamp">SAVED</div>
               </div>
@@ -388,7 +390,7 @@
 
             <!-- Action Buttons: Add to Calendar & Share -->
             <div class="ticket-actions">
-              <button class="btn-cal" id="btnAddToCalendar">
+              <button type="button" class="btn-cal" id="btnAddToCalendar">
                 <svg class="btn-cal-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -398,7 +400,7 @@
                 <span id="btnCalText" data-i18n="add_calendar">Add to calendar</span>
               </button>
 
-              <button class="btn-share" id="btnShare">
+              <button type="button" class="btn-share" id="btnShare">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="18" cy="5" r="3"></circle>
                   <circle cx="6" cy="12" r="3"></circle>
@@ -411,7 +413,7 @@
             </div>
 
             <!-- Calendar Options Dropdown (ICS file / Google Calendar / Apple Calendar) -->
-            <div class="cal-options-modal" id="calModal">
+            <div class="cal-options-modal" id="calModal" role="dialog" aria-modal="true" aria-labelledby="modalMonth" aria-hidden="true">
               <div class="modal-card">
                 <div class="modal-header">
                   <p class="modal-subtitle" data-i18n="adding_to_cal">ADDING TO YOUR CALENDAR</p>
@@ -428,17 +430,17 @@
                 </p>
 
                 <div class="modal-links">
-                  <button class="btn-cal-choice" id="btnDownloadIcs">
+                  <button type="button" class="btn-cal-choice" id="btnDownloadIcs">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     <span>Download .ics file</span>
                   </button>
-                  <a href="#" target="_blank" class="btn-cal-choice" id="btnGoogleCal">
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="btn-cal-choice" id="btnGoogleCal">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                     <span>Google Calendar</span>
                   </a>
                 </div>
 
-                <button class="btn-modal-close" id="btnConfirmDate" data-i18n="btn_see_you">See you there</button>
+                <button type="button" class="btn-modal-close" id="btnConfirmDate" data-i18n="btn_see_you">See you there</button>
               </div>
             </div>
 

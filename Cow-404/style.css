@@ -60,11 +60,37 @@ html, body {
   border: 0;
 }
 
+.sr-only:focus,
+.sr-only:focus-visible {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 300;
+  width: auto;
+  height: auto;
+  padding: 0.7rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  color: var(--color-btn-text);
+  background: var(--color-white);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 14px var(--color-shadow);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sr-only:focus-visible {
+  outline: 3px solid var(--color-btn-bg);
+  outline-offset: 3px;
+}
+
 /* Fullscreen Scene Wrapper */
 .scene-wrapper {
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -763,5 +789,36 @@ html, body {
 
   .btn-ctrl {
     padding: 0.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .error-code,
+  .error-message,
+  .btn-home {
+    opacity: 1;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .cow-walking {
+    display: none;
+  }
+
+  .cow-stuck,
+  .cow-stuck .leg-upper,
+  .cow-stuck .leg-lower,
+  .cow-stuck .stuck-tail-anim {
+    animation: none !important;
+    opacity: 1;
   }
 }

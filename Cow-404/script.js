@@ -29,12 +29,13 @@
   let audioCtx = null;
   let isSoundEnabled = true;
   let soundTimers = [];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /**
    * Helper: Play HTML5 audio element with fallback to procedural synthesizer
    */
   function playAudioFile(audioEl, fallbackSynthFn) {
-    if (!isSoundEnabled) return;
+    if (!isSoundEnabled || reducedMotion.matches) return;
     if (audioEl) {
       audioEl.currentTime = 0;
       const playPromise = audioEl.play();

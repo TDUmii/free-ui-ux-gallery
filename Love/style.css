@@ -80,6 +80,7 @@ body.lang-vi .letter-text {
 
 html, body {
   min-height: 100vh;
+  min-height: 100dvh;
   min-height: -webkit-fill-available;
   background: radial-gradient(circle at 50% 25%, #fff9f9 0%, #fde7ec 55%, #fad3dc 100%);
   color: #2b2326;
@@ -87,6 +88,13 @@ html, body {
   overflow-x: hidden;
   user-select: none;
   -webkit-user-select: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
 }
 
 /* Các trái tim trôi nhẹ nền toàn màn hình */
@@ -131,6 +139,7 @@ html, body {
   max-width: 440px;
   margin: 0 auto;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -845,5 +854,27 @@ html, body {
   .window-body {
     min-height: 400px;
     padding: 12px 10px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .ambient-bg,
+  .celebration-canvas {
+    display: none;
+  }
+
+  .heart-seal,
+  .pixel-heart,
+  .yaas-img {
+    animation: none !important;
   }
 }

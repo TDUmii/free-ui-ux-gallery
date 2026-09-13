@@ -170,6 +170,9 @@
   let targetDate = new Date();
   let countdownInterval = null;
   let audioMuted = true;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let floatingHeartTimer = null;
+  let lastModalTrigger = null;
 
   const userChoices = {
     dayIndex: 2, // Default to Day 2 (e.g. Upcoming Saturday/Weekend)
@@ -339,7 +342,7 @@
   // BACKGROUND HEARTS GENERATOR
   // =========================================================================
   function spawnFloatingHeart() {
-    if (!heartsContainer) return;
+    if (!heartsContainer || reducedMotion.matches) return;
     const heart = document.createElement('div');
     heart.className = 'floating-heart';
     heart.textContent = Math.random() > 0.3 ? '💖' : (Math.random() > 0.5 ? '🌸' : '💕');
@@ -357,12 +360,29 @@
     }, duration * 1000);
   }
 
-  setInterval(spawnFloatingHeart, 900);
+  function startFloatingHearts() {
+    clearInterval(floatingHeartTimer);
+    floatingHeartTimer = null;
+    if (reducedMotion.matches) {
+      if (heartsContainer) heartsContainer.replaceChildren();
+      return;
+    }
+    floatingHeartTimer = setInterval(spawnFloatingHeart, 900);
+  }
+
+  startFloatingHearts();
+  const handleMotionPreference = () => startFloatingHearts();
+  if (reducedMotion.addEventListener) {
+    reducedMotion.addEventListener('change', handleMotionPreference);
+  } else {
+    reducedMotion.addListener(handleMotionPreference);
+  }
 
   // =========================================================================
   // CANVAS CONFETTI EFFECT
   // =========================================================================
   function triggerConfetti() {
+    if (reducedMotion.matches) return;
     const canvas = document.createElement('canvas');
     canvas.style.position = 'fixed';
     canvas.style.inset = '0';
@@ -468,6 +488,9 @@
 
     // Update Header buttons
     langText.textContent = dict.lang_label;
+    langToggle.setAttribute('aria-label', lang === 'vi' ? 'Chuyển sang tiếng Anh' : 'Switch to Vietnamese');
+    soundToggle.setAttribute('aria-label', lang === 'vi' ? 'Bật hoặc tắt nhạc' : 'Toggle music');
+    soundToggle.setAttribute('aria-pressed', String(!audioMuted));
 
     // Update Dynamic Day Grid labels
     const d0 = calculatedDays[0];
@@ -516,11 +539,14 @@
     });
 
     // Show or hide back button
-    if (currentStep > 1 && currentStep < 5) {
+    const canGoBack = currentStep > 1 && currentStep < 5;
+    if (canGoBack) {
       btnBack.classList.add('visible');
     } else {
       btnBack.classList.remove('visible');
     }
+    btnBack.disabled = !canGoBack;
+    btnBack.setAttribute('aria-hidden', String(!canGoBack));
   }
 
   function goToStep(stepNumber) {
@@ -673,8 +699,11 @@
   const timeCards = document.querySelectorAll('.time-card');
 
   function updateDaySelection(card) {
-    dayCards.forEach((c) => c.classList.remove('selected'));
-    card.classList.add('selected');
+    dayCards.forEach((c) => {
+      const selected = c === card;
+      c.classList.toggle('selected', selected);
+      c.setAttribute('aria-pressed', String(selected));
+    });
     playPopSound(520);
 
     const dayIndex = parseInt(card.getAttribute('data-day-index'), 10);
@@ -698,8 +727,11 @@
 
   timeCards.forEach((card) => {
     card.addEventListener('click', () => {
-      timeCards.forEach((c) => c.classList.remove('selected'));
-      card.classList.add('selected');
+      timeCards.forEach((c) => {
+        const selected = c === card;
+        c.classList.toggle('selected', selected);
+        c.setAttribute('aria-pressed', String(selected));
+      });
       playPopSound(580);
 
       const timeKey = card.getAttribute('data-time-key');
@@ -725,8 +757,11 @@
 
   activityCards.forEach((card) => {
     card.addEventListener('click', () => {
-      activityCards.forEach((c) => c.classList.remove('selected'));
-      card.classList.add('selected');
+      activityCards.forEach((c) => {
+        const selected = c === card;
+        c.classList.toggle('selected', selected);
+        c.setAttribute('aria-pressed', String(selected));
+      });
       playPopSound(640);
 
       const key = card.getAttribute('data-activity-key');
@@ -745,8 +780,11 @@
 
   afterCards.forEach((card) => {
     card.addEventListener('click', () => {
-      afterCards.forEach((c) => c.classList.remove('selected'));
-      card.classList.add('selected');
+      afterCards.forEach((c) => {
+        const selected = c === card;
+        c.classList.toggle('selected', selected);
+        c.setAttribute('aria-pressed', String(selected));
+      });
       playPopSound(700);
 
       const key = card.getAttribute('data-after-key');
@@ -979,6 +1017,34 @@
     }, 2800);
   }
 
+  function openCalendarModal() {
+    lastModalTrigger = document.activeElement;
+    calModal.classList.add('open');
+    calModal.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => btnDownloadIcs.focus());
+  }
+
+  function closeCalendarModal() {
+    calModal.classList.remove('open');
+    calModal.setAttribute('aria-hidden', 'true');
+    if (lastModalTrigger && lastModalTrigger.isConnected) lastModalTrigger.focus();
+  }
+
+  calModal.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const focusable = [...calModal.querySelectorAll('button:not([disabled]), a[href]')];
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
   // Handle "Add to Calendar"
   btnAddToCalendar.addEventListener('click', () => {
     playStampThud();
@@ -998,9 +1064,7 @@
     btnGoogleCal.href = getGoogleCalendarUrl();
 
     // Open Modal after slight delay
-    setTimeout(() => {
-      calModal.classList.add('open');
-    }, 450);
+    setTimeout(openCalendarModal, reducedMotion.matches ? 0 : 450);
 
     // Toast
     const dict = I18N[currentLang];
@@ -1015,13 +1079,20 @@
 
   btnConfirmDate.addEventListener('click', () => {
     playPopSound(500);
-    calModal.classList.remove('open');
+    closeCalendarModal();
   });
 
   // Close modal when tapping outside card
   calModal.addEventListener('click', (e) => {
     if (e.target === calModal) {
-      calModal.classList.remove('open');
+      closeCalendarModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && calModal.classList.contains('open')) {
+      event.preventDefault();
+      closeCalendarModal();
     }
   });
 
@@ -1059,6 +1130,7 @@
   soundToggle.addEventListener('click', () => {
     initAudioCtx();
     audioMuted = !audioMuted;
+    soundToggle.setAttribute('aria-pressed', String(!audioMuted));
 
     if (audioMuted) {
       soundToggle.classList.add('muted');

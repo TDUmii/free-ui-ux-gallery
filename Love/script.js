@@ -6,6 +6,28 @@
 (function () {
   'use strict';
 
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let reducedMotion = motionQuery.matches;
+  let ambientHeartTimer = null;
+
+  const updateMotionPreference = () => {
+    reducedMotion = motionQuery.matches;
+    if (reducedMotion) {
+      clearInterval(ambientHeartTimer);
+      ambientHeartTimer = null;
+      if (typeof heartRainActive !== 'undefined') heartRainActive = false;
+    } else if (ambientBg) {
+      initAmbientHearts();
+    }
+    if (typeof drawPixelCat === 'function') drawPixelCat();
+  };
+
+  if (motionQuery.addEventListener) {
+    motionQuery.addEventListener('change', updateMotionPreference);
+  } else {
+    motionQuery.addListener(updateMotionPreference);
+  }
+
   // --- BỘ TỔNG HỢP ÂM THANH VUI NHỘN (Web Audio API Procedural) ---
   class SoundSynth {
     constructor() {
@@ -435,6 +457,9 @@
   // --- TRÁI TIM NỀN TRÔI LƠ LỬNG ---
   function initAmbientHearts() {
     ambientBg.innerHTML = '';
+    clearInterval(ambientHeartTimer);
+    ambientHeartTimer = null;
+    if (reducedMotion) return;
     const heartSymbols = ['❤️', '💖', '💕', '🌸', '✨'];
     
     function spawnDrifter() {
@@ -455,7 +480,7 @@
     for (let i = 0; i < 8; i++) {
       setTimeout(spawnDrifter, i * 500);
     }
-    setInterval(spawnDrifter, 1200);
+    ambientHeartTimer = setInterval(spawnDrifter, 1200);
   }
 
   // --- CƠ CHẾ KÉO VÀ BẮN CUNG CUPID (Cung cong hướng lên phong bì) ---
@@ -463,6 +488,7 @@
     // Dây cung căng xuống dưới từ tọa độ gốc y=65
     const stringY = 65 + pullY;
     bowStringPath.setAttribute('d', `M 30 65 Q 120 ${stringY} 210 65`);
+    aimHandle.setAttribute('aria-valuenow', String(Math.round(pullY)));
 
     // Mũi tên tụt xuống cùng dây cung
     cupidArrow.style.transform = `translateY(${pullY}px)`;
@@ -485,13 +511,13 @@
     const flightDistance = arrowRect.top - sealRect.top + 10;
 
     // Mũi tên lao vút lên trên hướng về phong bì
-    cupidArrow.style.transition = 'transform 0.32s cubic-bezier(0.2, 0.8, 0.4, 1)';
+    cupidArrow.style.transition = reducedMotion ? 'none' : 'transform 0.32s cubic-bezier(0.2, 0.8, 0.4, 1)';
     cupidArrow.style.transform = `translateY(-${flightDistance}px)`;
 
     setTimeout(() => {
       // Âm thanh và hiệu ứng trúng đích
       sound.playHit();
-      envelope.style.animation = 'hopHeart 0.3s ease';
+      envelope.style.animation = reducedMotion ? 'none' : 'hopHeart 0.3s ease';
       heartSeal.style.transform = 'scale(1.35)';
 
       // Chùm tia sáng trái tim bùng nổ từ dấu sáp
@@ -500,17 +526,18 @@
       // Mở nắp phong bì
       setTimeout(() => {
         envelope.classList.add('opened');
-      }, 150);
+      }, reducedMotion ? 0 : 150);
 
       // Chuyển sang Cảnh 2: Cửa sổ LOVE
       setTimeout(() => {
         transitionToLoveWindow();
-      }, 550);
+      }, reducedMotion ? 0 : 550);
 
-    }, 320);
+    }, reducedMotion ? 0 : 320);
   }
 
   function createImpactBurst(x, y) {
+    if (reducedMotion) return;
     const symbols = ['❤️', '✨', '💖', '⭐'];
     for (let i = 0; i < 12; i++) {
       const p = document.createElement('div');
@@ -543,6 +570,30 @@
     dragStartY = e.clientY;
     aimHandle.setPointerCapture(e.pointerId);
     e.preventDefault();
+  });
+
+  aimHandle.addEventListener('keydown', (e) => {
+    if (isArrowFired) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      pullDistance = Math.min(MAX_PULL, pullDistance + 5);
+      updateBowVisual(pullDistance);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      pullDistance = Math.max(0, pullDistance - 5);
+      updateBowVisual(pullDistance);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      pullDistance = 0;
+      updateBowVisual(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      pullDistance = MAX_PULL;
+      updateBowVisual(MAX_PULL);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fireArrow();
+    }
   });
 
   window.addEventListener('pointermove', (e) => {
@@ -653,7 +704,7 @@
       }, 140);
     }
 
-    heartBeatPhase += 0.08;
+    if (!reducedMotion) heartBeatPhase += 0.08;
     const heartScale = catState === 'happy' ? 1.0 + Math.sin(heartBeatPhase * 2) * 0.15 : 1.0 + Math.sin(heartBeatPhase) * 0.08;
 
     for (let r = 0; r < catGrid.length; r++) {
@@ -716,10 +767,11 @@
     }
     catCtx.restore();
 
-    requestAnimationFrame(drawPixelCat);
+    if (!reducedMotion) requestAnimationFrame(drawPixelCat);
   }
 
-  requestAnimationFrame(drawPixelCat);
+  if (reducedMotion) drawPixelCat();
+  else requestAnimationFrame(drawPixelCat);
 
   // --- CƠ CHẾ NÉ TRÁNH NÚT "NO" (BAY XUNG QUANH, KHÔNG MẤT ĐI, KHÔNG CHE CHỮ) ---
   let lastDodgeTime = 0;
@@ -848,6 +900,7 @@
 
     catState = 'happy';
     catWrapper.classList.add('happy');
+    if (reducedMotion) drawPixelCat();
 
     buttonsArea.style.display = 'none';
     noBtn.style.display = 'none';
@@ -1000,6 +1053,8 @@
     noBtn.style.display = 'inline-flex';
     letterBox.style.display = 'none';
     letterText.innerHTML = '';
+
+    if (reducedMotion) drawPixelCat();
 
     setLanguage(currentLang);
   }

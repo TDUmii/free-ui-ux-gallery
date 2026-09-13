@@ -221,7 +221,7 @@ h1 {
   margin: 18px -9px 16px;
 }
 .swatch {
-  width: 38px;
+  width: 44px;
   height: 44px;
   border: 0;
   background: none;
@@ -375,6 +375,12 @@ h1 {
 .page-footer a {
   padding: 12px 0;
 }
+.page-footer .personal-credit {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 0;
+}
 .toast {
   position: fixed;
   bottom: 74px;
@@ -508,7 +514,7 @@ h1 {
     font-size: 9px;
     padding: 8px;
   }
-  .page-footer a {
+  .page-footer a:not(.personal-credit) {
     display: none;
   }
 }
