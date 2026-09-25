@@ -45,11 +45,12 @@ body.lamp-off .lamp-aura { opacity: .03; }
   filter: drop-shadow(0 14px 13px rgba(19, 12, 4, .28));
   transform: rotate(-3deg);
   transform-origin: 54% 88%;
-  transition: filter .42s ease, transform .38s var(--ease-out);
+  transition: filter .32s ease, transform .38s var(--ease-out);
   pointer-events: none;
 }
 
 body.lamp-off .shade {
+  transition-duration: .52s, .38s;
   filter: brightness(.46) saturate(.55) drop-shadow(0 12px 12px rgba(0,0,0,.28));
   transform: rotate(0);
 }
